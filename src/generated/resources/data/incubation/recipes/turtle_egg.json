@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "incubation:turtle_egg_crate"
+    }
+  ],
+  "result": {
+    "item": "minecraft:turtle_egg",
+    "count": 9
+  }
+}

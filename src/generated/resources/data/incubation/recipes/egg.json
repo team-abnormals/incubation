@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "incubation:chicken_egg_crate"
+    }
+  ],
+  "result": {
+    "item": "minecraft:egg",
+    "count": 9
+  }
+}

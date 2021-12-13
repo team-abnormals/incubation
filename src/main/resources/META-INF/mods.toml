@@ -1,0 +1,39 @@
+modLoader = "javafml"
+loaderVersion = "[32,)"
+issueTrackerURL = "https://github.com/team-abnormals/incubation/issues"
+license = "https://github.com/team-abnormals/incubation/blob/main/LICENSE.txt"
+
+[[mods]]
+    modId = "incubation"
+    version = "${file.jarVersion}"
+    logoFile = "logo.png"
+    itemIcon = "incubation:fried_egg"
+    configBackground = "minecraft:textures/block/dirt.png"
+    authors = "Team Abnormals"
+    credits = "bageldotjpg"
+    displayURL = "https://www.teamabnormals.com/mods/incubation"
+    displayName = "Incubation"
+    description = '''
+    Template description.
+    '''
+
+[[dependencies.incubation]]
+    modId = "minecraft"
+    mandatory = true
+    versionRange = "[1.18.1,1.19)"
+    ordering = "NONE"
+    side = "BOTH"
+
+[[dependencies.incubation]]
+    modId = "forge"
+    mandatory = true
+    versionRange = "[39.0.0,)"
+    ordering = "NONE"
+    side = "BOTH"
+
+[[dependencies.incubation]]
+    modId = "blueprint"
+    mandatory = true
+    versionRange = "[5.0.0,)"
+    ordering = "AFTER"
+    side = "BOTH"

@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "incubation:turtle_egg"
+    ]
+  },
+  "criteria": {
+    "has_turtle_egg_crate": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "incubation:turtle_egg_crate"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "incubation:turtle_egg"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_turtle_egg_crate",
+      "has_the_recipe"
+    ]
+  ]
+}

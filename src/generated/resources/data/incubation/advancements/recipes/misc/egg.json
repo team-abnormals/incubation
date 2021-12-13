@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "incubation:egg"
+    ]
+  },
+  "criteria": {
+    "has_chicken_egg_crate": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "incubation:chicken_egg_crate"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "incubation:egg"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_chicken_egg_crate",
+      "has_the_recipe"
+    ]
+  ]
+}

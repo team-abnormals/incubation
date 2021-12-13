@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:turtle_egg"
+    }
+  },
+  "result": {
+    "item": "incubation:turtle_egg_crate"
+  }
+}

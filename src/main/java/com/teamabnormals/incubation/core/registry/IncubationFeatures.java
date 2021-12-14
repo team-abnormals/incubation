@@ -1,14 +1,15 @@
 package com.teamabnormals.incubation.core.registry;
 
 import com.teamabnormals.incubation.common.world.gen.feature.BirdNestFeature;
+import com.teamabnormals.incubation.common.world.gen.feature.configuration.NestConfiguration;
 import com.teamabnormals.incubation.core.Incubation;
+import com.teamabnormals.incubation.core.other.IncubationConstants;
 import net.minecraft.core.Registry;
 import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.configurations.BlockStateConfiguration;
 import net.minecraft.world.level.levelgen.placement.*;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.*;
@@ -17,12 +18,12 @@ import net.minecraftforge.registries.*;
 public class IncubationFeatures {
 	public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, Incubation.MOD_ID);
 
-	public static final RegistryObject<Feature<BlockStateConfiguration>> BIRD_NEST = FEATURES.register("bird_nest", () -> new BirdNestFeature(BlockStateConfiguration.CODEC));
+	public static final RegistryObject<Feature<NestConfiguration>> BIRD_NEST = FEATURES.register("bird_nest", () -> new BirdNestFeature(NestConfiguration.CODEC));
 
 	public static final class IncubationConfiguredFeatures {
-		public static final ConfiguredFeature<?, ?> NEST_CHICKEN = register("nest_chicken", BIRD_NEST.get().configured(new BlockStateConfiguration(IncubationBlocks.TWIG_CHICKEN_NEST.get().defaultBlockState())));
-		public static final ConfiguredFeature<?, ?> NEST_DUCK = register("nest_duck", BIRD_NEST.get().configured(new BlockStateConfiguration(IncubationBlocks.TWIG_DUCK_NEST.get().defaultBlockState())));
-		public static final ConfiguredFeature<?, ?> NEST_TURKEY = register("nest_turkey", BIRD_NEST.get().configured(new BlockStateConfiguration(IncubationBlocks.TWIG_TURKEY_NEST.get().defaultBlockState())));
+		public static final ConfiguredFeature<?, ?> NEST_CHICKEN = register("nest_chicken", BIRD_NEST.get().configured(new NestConfiguration(IncubationBlocks.TWIG_CHICKEN_NEST.get().defaultBlockState(), IncubationConstants.CHICKEN)));
+		public static final ConfiguredFeature<?, ?> NEST_DUCK = register("nest_duck", BIRD_NEST.get().configured(new NestConfiguration(IncubationBlocks.TWIG_DUCK_NEST.get().defaultBlockState(), IncubationConstants.DUCK)));
+		public static final ConfiguredFeature<?, ?> NEST_TURKEY = register("nest_turkey", BIRD_NEST.get().configured(new NestConfiguration(IncubationBlocks.TWIG_TURKEY_NEST.get().defaultBlockState(), IncubationConstants.TURKEY)));
 
 		private static ConfiguredFeature<?, ?> register(String name, ConfiguredFeature<?, ?> configuredFeature) {
 			return Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new ResourceLocation(Incubation.MOD_ID, name), configuredFeature);

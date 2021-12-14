@@ -1,13 +1,16 @@
 package com.teamabnormals.incubation.core.other;
 
 import com.teamabnormals.blueprint.core.util.DataUtil;
+import com.teamabnormals.incubation.core.Incubation;
 import com.teamabnormals.incubation.core.registry.IncubationBlocks;
+import net.minecraft.world.item.Items;
 
 public class IncubationCompat {
 
 	public static void registerCompat() {
 		registerCompostables();
 		registerFlammables();
+		DataUtil.changeItemLocalization(Items.EGG, Incubation.MOD_ID, "chicken_egg");
 	}
 
 	private static void registerCompostables() {

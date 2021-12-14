@@ -17,6 +17,8 @@ public class IncubationLanguageProvider extends LanguageProvider {
 
 	@Override
 	public void addTranslations() {
+		this.add(IncubationBlocks.CHICKEN_EGG_CRATE.get());
+		this.add(IncubationBlocks.TURTLE_EGG_CRATE.get());
 		this.add(IncubationBlocks.HAY_NEST.get());
 		this.add(IncubationBlocks.HAY_CHICKEN_NEST.get());
 		this.add(IncubationBlocks.HAY_DUCK_NEST.get());
@@ -27,6 +29,7 @@ public class IncubationLanguageProvider extends LanguageProvider {
 		this.add(IncubationBlocks.TWIG_TURKEY_NEST.get());
 		this.add(IncubationItems.FRIED_EGG.get());
 		this.add(IncubationItems.SCRAMBLED_EGGS.get());
+		this.add("item.incubation.chicken_egg", "Chicken Egg");
 	}
 
 	private void add(Item item) {

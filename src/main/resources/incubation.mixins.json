@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "com.teamabnormals.incubation.core.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "minVersion": "0.8",
+  "refmap": "environmental.refmap.json",
+  "mixins": [
+    "ChickenEntityMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

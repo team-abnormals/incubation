@@ -1,7 +1,12 @@
 package com.teamabnormals.incubation.common.block;
 
+import java.util.function.Supplier;
+
+import javax.annotation.Nullable;
+
 import com.teamabnormals.incubation.common.block.entity.BirdNestBlockEntity;
 import com.teamabnormals.incubation.core.registry.IncubationBlockEntityTypes;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
@@ -19,9 +24,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.registries.ForgeRegistries;
-
-import javax.annotation.Nullable;
-import java.util.function.Supplier;
 
 public class BirdNestBlock extends BaseEntityBlock {
 	protected static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 3.0D, 16.0D);
@@ -55,9 +57,9 @@ public class BirdNestBlock extends BaseEntityBlock {
 	@Override
 	public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
 		if (player.mayBuild()) {
-			int i = state.getValue(EGGS);
 			ItemStack itemstack = player.getItemInHand(handIn);
 			if (this.egg.get() != Items.AIR && itemstack.getItem() == this.egg.get()) {
+				int i = state.getValue(EGGS);
 				if (i < 6) {
 					if (!player.getAbilities().instabuild) {
 						itemstack.shrink(1);
@@ -66,11 +68,7 @@ public class BirdNestBlock extends BaseEntityBlock {
 				}
 			} else {
 				popResource(worldIn, pos, new ItemStack(this.egg.get()));
-
-				if (i > 1)
-					worldIn.setBlock(pos, state.setValue(EGGS, i - 1), 3);
-				else
-					worldIn.setBlock(pos, this.getEmptyNest().defaultBlockState(), 3);
+				this.removeEgg(worldIn, pos, state);
 			}
 			return InteractionResult.sidedSuccess(worldIn.isClientSide);
 		} else {
@@ -78,6 +76,16 @@ public class BirdNestBlock extends BaseEntityBlock {
 		}
 	}
 
+	private void removeEgg(Level world, BlockPos pos, BlockState state) {
+		int i = state.getValue(EGGS);
+		if (i > 1) {
+			world.setBlock(pos, state.setValue(EGGS, i - 1), 3);
+		} else {
+			world.setBlock(pos, this.getEmptyNest().defaultBlockState(), 3);
+		}
+	}
+
+	@Override
 	public ItemStack getCloneItemStack(BlockGetter worldIn, BlockPos pos, BlockState state) {
 		return new ItemStack(this.getEgg());
 	}
@@ -100,14 +108,17 @@ public class BirdNestBlock extends BaseEntityBlock {
 	}
 
 	@Nullable
+	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
 		return level.isClientSide ? null : createTickerHelper(type, IncubationBlockEntityTypes.BIRD_NEST.get(), BirdNestBlockEntity::serverTick);
 	}
 
+	@Override
 	public RenderShape getRenderShape(BlockState state) {
 		return RenderShape.MODEL;
 	}
 
+	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(EGGS);
 	}

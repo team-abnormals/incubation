@@ -12,7 +12,9 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.Map;
@@ -45,17 +47,9 @@ public class EmptyNestBlock extends Block {
 		if (player.mayBuild()) {
 			ItemStack itemstack = player.getItemInHand(handIn);
 			Item item = itemstack.getItem();
+			Block nest = this.getNest(item);
 
-			Block nest = null;
-
-			for (Supplier<? extends Item> supplier : NESTS.keySet()) {
-				if (item == supplier.get()) {
-					nest = NESTS.get(supplier);
-					break;
-				}
-			}
-
-			if (nest != null && ((BirdNestBlock) nest).getEgg() != Items.AIR) {
+			if (nest != null) {
 				if (!player.getAbilities().instabuild && !worldIn.isClientSide) {
 					itemstack.shrink(1);
 				}
@@ -76,15 +70,14 @@ public class EmptyNestBlock extends Block {
 	}
 
 	public Block getNest(Item item) {
-		Block nest = null;
-
-		for (Supplier<? extends Item> supplier : NESTS.keySet()) {
-			if (item == supplier.get()) {
-				nest = NESTS.get(supplier);
-				break;
+		if (item != Items.AIR) {
+			for (Supplier<? extends Item> egg : NESTS.keySet()) {
+				if (item == egg.get()) {
+					return NESTS.get(egg);
+				}
 			}
 		}
 
-		return nest;
+		return null;
 	}
 }

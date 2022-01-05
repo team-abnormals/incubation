@@ -8,6 +8,8 @@ import com.teamabnormals.incubation.core.data.server.tags.IncubationBlockTagsPro
 import com.teamabnormals.incubation.core.data.server.tags.IncubationItemTagsProvider;
 import com.teamabnormals.incubation.core.other.IncubationCompat;
 import com.teamabnormals.incubation.core.registry.IncubationFeatures;
+import com.teamabnormals.incubation.core.registry.IncubationStructures;
+
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -34,7 +36,10 @@ public class Incubation {
 	}
 
 	private void commonSetup(FMLCommonSetupEvent event) {
-		event.enqueueWork(IncubationCompat::registerCompat);
+		event.enqueueWork(() -> {
+			IncubationCompat.registerCompat();
+			IncubationStructures.setupVillagerHouses();
+		});
 	}
 
 	private void dataSetup(GatherDataEvent event) {

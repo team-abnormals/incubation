@@ -14,7 +14,7 @@ license = "https://github.com/team-abnormals/incubation/blob/main/LICENSE.txt"
     displayURL = "https://www.teamabnormals.com/mods/incubation"
     displayName = "Incubation"
     description = '''
-    Template description.
+    Lays down a dozen of egg-related features, including fried eggs, scrambled eggs bird nests, and more!
     '''
 
 [[dependencies.incubation]]

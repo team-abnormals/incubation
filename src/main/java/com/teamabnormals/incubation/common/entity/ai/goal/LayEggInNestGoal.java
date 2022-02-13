@@ -1,4 +1,4 @@
-package com.teamabnormals.incubation.common.entity.goal;
+package com.teamabnormals.incubation.common.entity.ai.goal;
 
 import com.teamabnormals.incubation.api.EggLayer;
 import com.teamabnormals.incubation.common.block.BirdNestBlock;

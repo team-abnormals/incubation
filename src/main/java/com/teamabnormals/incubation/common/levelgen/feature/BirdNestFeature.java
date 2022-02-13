@@ -1,8 +1,8 @@
-package com.teamabnormals.incubation.common.world.gen.feature;
+package com.teamabnormals.incubation.common.levelgen.feature;
 
 import com.mojang.serialization.Codec;
 import com.teamabnormals.incubation.common.block.BirdNestBlock;
-import com.teamabnormals.incubation.common.world.gen.feature.configuration.NestConfiguration;
+import com.teamabnormals.incubation.common.levelgen.feature.configurations.NestConfiguration;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.level.WorldGenLevel;

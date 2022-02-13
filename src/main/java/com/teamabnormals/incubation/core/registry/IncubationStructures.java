@@ -4,7 +4,6 @@ import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import com.teamabnormals.blueprint.core.util.DataUtil;
 import com.teamabnormals.incubation.core.Incubation;
-
 import net.minecraft.data.worldgen.DesertVillagePools;
 import net.minecraft.data.worldgen.PlainVillagePools;
 import net.minecraft.data.worldgen.Pools;
@@ -15,9 +14,11 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.levelgen.feature.structures.StructurePoolElement;
 import net.minecraft.world.level.levelgen.feature.structures.StructureTemplatePool;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
-@Mod.EventBusSubscriber(modid = Incubation.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = Incubation.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
 public class IncubationStructures {
+
 	public static void setupVillagerHouses() {
 		PlainVillagePools.bootstrap();
 		SnowyVillagePools.bootstrap();

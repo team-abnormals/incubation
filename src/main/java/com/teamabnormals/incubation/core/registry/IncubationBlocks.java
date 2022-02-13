@@ -5,17 +5,16 @@ import com.teamabnormals.incubation.common.block.BirdNestBlock;
 import com.teamabnormals.incubation.common.block.EmptyNestBlock;
 import com.teamabnormals.incubation.core.Incubation;
 import com.teamabnormals.incubation.core.other.IncubationConstants;
-
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.registries.RegistryObject;
 
-@Mod.EventBusSubscriber(modid = Incubation.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = Incubation.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
 public class IncubationBlocks {
 	public static final BlockSubRegistryHelper HELPER = Incubation.REGISTRY_HELPER.getBlockSubHelper();
 

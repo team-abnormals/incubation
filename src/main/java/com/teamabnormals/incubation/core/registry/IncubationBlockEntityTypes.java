@@ -5,10 +5,10 @@ import com.teamabnormals.incubation.common.block.BirdNestBlock;
 import com.teamabnormals.incubation.common.block.entity.BirdNestBlockEntity;
 import com.teamabnormals.incubation.core.Incubation;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.registries.RegistryObject;
 
-@Mod.EventBusSubscriber(modid = Incubation.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = Incubation.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
 public class IncubationBlockEntityTypes {
 	public static final BlockEntitySubRegistryHelper HELPER = Incubation.REGISTRY_HELPER.getBlockEntitySubHelper();
 

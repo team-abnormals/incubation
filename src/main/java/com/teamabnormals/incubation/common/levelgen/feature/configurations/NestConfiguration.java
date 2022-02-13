@@ -1,4 +1,4 @@
-package com.teamabnormals.incubation.common.world.gen.feature.configuration;
+package com.teamabnormals.incubation.common.levelgen.feature.configurations;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

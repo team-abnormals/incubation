@@ -1,7 +1,7 @@
 package com.teamabnormals.incubation.core.registry;
 
-import com.teamabnormals.incubation.common.world.gen.feature.BirdNestFeature;
-import com.teamabnormals.incubation.common.world.gen.feature.configuration.NestConfiguration;
+import com.teamabnormals.incubation.common.levelgen.feature.BirdNestFeature;
+import com.teamabnormals.incubation.common.levelgen.feature.configurations.NestConfiguration;
 import com.teamabnormals.incubation.core.Incubation;
 import com.teamabnormals.incubation.core.other.IncubationConstants;
 import net.minecraft.core.Registry;
@@ -10,11 +10,16 @@ import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.placement.*;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.*;
+import net.minecraft.world.level.levelgen.placement.BiomeFilter;
+import net.minecraft.world.level.levelgen.placement.InSquarePlacement;
+import net.minecraft.world.level.levelgen.placement.PlacedFeature;
+import net.minecraft.world.level.levelgen.placement.RarityFilter;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
-@Mod.EventBusSubscriber(modid = Incubation.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = Incubation.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
 public class IncubationFeatures {
 	public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, Incubation.MOD_ID);
 

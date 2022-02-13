@@ -1,15 +1,15 @@
 package com.teamabnormals.incubation.core;
 
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
-import com.teamabnormals.incubation.core.data.client.*;
+import com.teamabnormals.incubation.core.data.client.IncubationBlockStateProvider;
+import com.teamabnormals.incubation.core.data.client.IncubationItemModelProvider;
+import com.teamabnormals.incubation.core.data.client.IncubationLanguageProvider;
 import com.teamabnormals.incubation.core.data.server.IncubationLootTableProvider;
 import com.teamabnormals.incubation.core.data.server.IncubationRecipeProvider;
 import com.teamabnormals.incubation.core.data.server.tags.IncubationBlockTagsProvider;
-import com.teamabnormals.incubation.core.data.server.tags.IncubationItemTagsProvider;
 import com.teamabnormals.incubation.core.other.IncubationCompat;
 import com.teamabnormals.incubation.core.registry.IncubationFeatures;
 import com.teamabnormals.incubation.core.registry.IncubationStructures;
-
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -49,7 +49,6 @@ public class Incubation {
 		if (event.includeServer()) {
 			IncubationBlockTagsProvider blockTagGen = new IncubationBlockTagsProvider(dataGenerator, existingFileHelper);
 			dataGenerator.addProvider(blockTagGen);
-			dataGenerator.addProvider(new IncubationItemTagsProvider(dataGenerator, blockTagGen, existingFileHelper));
 			dataGenerator.addProvider(new IncubationRecipeProvider(dataGenerator));
 			dataGenerator.addProvider(new IncubationLootTableProvider(dataGenerator));
 		}

@@ -1,7 +1,7 @@
 package com.teamabnormals.incubation.core.data.server;
 
+import com.teamabnormals.blueprint.core.other.tags.BlueprintItemTags;
 import com.teamabnormals.incubation.core.Incubation;
-import com.teamabnormals.incubation.core.other.tags.IncubationItemTags;
 import com.teamabnormals.incubation.core.registry.IncubationBlocks;
 import com.teamabnormals.incubation.core.registry.IncubationItems;
 import net.minecraft.core.Registry;
@@ -27,8 +27,8 @@ public class IncubationRecipeProvider extends RecipeProvider {
 	public void buildCraftingRecipes(Consumer<FinishedRecipe> consumer) {
 		nineBlockStorageRecipes(consumer, Items.EGG, IncubationBlocks.CHICKEN_EGG_CRATE.get());
 		nineBlockStorageRecipes(consumer, Items.TURTLE_EGG, IncubationBlocks.TURTLE_EGG_CRATE.get());
-		cookingRecipes(consumer, IncubationItemTags.EGGS, IncubationItems.FRIED_EGG.get());
-		ShapelessRecipeBuilder.shapeless(IncubationItems.SCRAMBLED_EGGS.get()).requires(IncubationItemTags.EGGS).requires(IncubationItemTags.EGGS).requires(IncubationItemTags.MILK).requires(Items.BOWL).unlockedBy(getHasName(Items.BOWL), has(Items.BOWL)).unlockedBy(getHasName(IncubationItemTags.EGGS), has(IncubationItemTags.EGGS)).save(consumer);
+		cookingRecipes(consumer, BlueprintItemTags.EGGS, IncubationItems.FRIED_EGG.get());
+		ShapelessRecipeBuilder.shapeless(IncubationItems.SCRAMBLED_EGGS.get()).requires(BlueprintItemTags.EGGS).requires(BlueprintItemTags.EGGS).requires(BlueprintItemTags.MILK).requires(Items.BOWL).unlockedBy(getHasName(Items.BOWL), has(Items.BOWL)).unlockedBy(getHasName(BlueprintItemTags.EGGS), has(BlueprintItemTags.EGGS)).save(consumer);
 		ShapedRecipeBuilder.shaped(IncubationBlocks.HAY_NEST.get()).define('#', Items.WHEAT).pattern("# #").pattern("###").unlockedBy(getHasName(Items.WHEAT), has(Items.WHEAT)).save(consumer);
 	}
 

@@ -27,13 +27,13 @@ license = "https://github.com/team-abnormals/incubation/blob/main/LICENSE.txt"
 [[dependencies.incubation]]
     modId = "forge"
     mandatory = true
-    versionRange = "[39.0.0,)"
+    versionRange = "[39.0.20,)"
     ordering = "NONE"
     side = "BOTH"
 
 [[dependencies.incubation]]
     modId = "blueprint"
     mandatory = true
-    versionRange = "[5.0.0,)"
+    versionRange = "[5.1.1,)"
     ordering = "AFTER"
     side = "BOTH"

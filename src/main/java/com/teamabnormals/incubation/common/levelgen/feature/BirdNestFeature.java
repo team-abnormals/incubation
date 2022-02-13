@@ -33,13 +33,14 @@ public class BirdNestFeature extends Feature<NestConfiguration> {
 		if (level.isEmptyBlock(blockpos) && level.getBlockState(blockpos.below()).getBlock() == Blocks.GRASS_BLOCK) {
 			level.setBlock(blockpos, blockstate, 2);
 			EntityType<?> entityType = ForgeRegistries.ENTITIES.getValue(context.config().entityType);
-			if (entityType != null && entityType.create(level.getLevel()) instanceof Mob entity) {
+			if (entityType != null && entityType.create(level.getLevel()) instanceof Mob) {
 				for (int i = 0; i < 4; ++i) {
 					double posX = (double) pos.getX() + (random.nextDouble() - random.nextDouble()) * 4.5D;
 					double posY = pos.getY() + random.nextInt(3) - 1;
 					double posZ = (double) pos.getZ() + (random.nextDouble() - random.nextDouble()) * 4.5D;
 					if (level.noCollision(entityType.getAABB(posX, posY, posZ))) {
-						if (SpawnPlacements.checkSpawnRules(entityType, level, MobSpawnType.STRUCTURE, new BlockPos(posX, posY, posZ), level.getRandom())) {
+						Mob entity = (Mob) entityType.create(level.getLevel());
+						if (entity != null && SpawnPlacements.checkSpawnRules(entityType, level, MobSpawnType.STRUCTURE, new BlockPos(posX, posY, posZ), level.getRandom())) {
 							entity.moveTo(posX, posY, posZ, random.nextFloat() * 360.0F, 0.0F);
 							entity.finalizeSpawn(level, level.getCurrentDifficultyAt(entity.blockPosition()), MobSpawnType.STRUCTURE, null, null);
 							entity.setBaby(random.nextInt(3) == 0);

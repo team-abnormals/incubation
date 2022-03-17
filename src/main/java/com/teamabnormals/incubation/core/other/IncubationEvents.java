@@ -1,23 +1,23 @@
 package com.teamabnormals.incubation.core.other;
 
-import com.teamabnormals.blueprint.core.util.DataUtil;
 import com.teamabnormals.incubation.api.EggLayer;
 import com.teamabnormals.incubation.common.entity.ai.goal.LayEggInNestGoal;
 import com.teamabnormals.incubation.core.Incubation;
+import com.teamabnormals.incubation.core.other.tags.IncubationBiomeTags;
 import com.teamabnormals.incubation.core.registry.IncubationFeatures.IncubationPlacedFeatures;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.animal.Animal;
-import net.minecraft.world.level.biome.Biome.BiomeCategory;
-import net.minecraft.world.level.biome.Biomes;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraftforge.common.world.BiomeGenerationSettingsBuilder;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.registries.ForgeRegistries;
 
 @EventBusSubscriber(modid = Incubation.MOD_ID)
 public class IncubationEvents {
@@ -34,16 +34,24 @@ public class IncubationEvents {
 
 	@SubscribeEvent
 	public static void onBiomeLoad(BiomeLoadingEvent event) {
-		ResourceLocation biome = event.getName();
+		ResourceLocation name = event.getName();
 		BiomeGenerationSettingsBuilder generation = event.getGeneration();
-		if (biome == null) return;
+		Biome biome = ForgeRegistries.BIOMES.getValue(name);
 
-		if (ModList.get().isLoaded(IncubationConstants.ENVIRONMENTAL) && !DataUtil.matchesKeys(biome, Biomes.FROZEN_RIVER) && (event.getCategory() == BiomeCategory.SWAMP || event.getCategory() == BiomeCategory.RIVER)) {
-			generation.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, IncubationPlacedFeatures.NEST_DUCK);
-		} else if (ModList.get().isLoaded(IncubationConstants.AUTUMNITY) && biome.toString().contains("maple") || biome.toString().contains("pumpkin_fields")) {
-			generation.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, IncubationPlacedFeatures.NEST_TURKEY);
-		} else if (event.getCategory() == BiomeCategory.FOREST) {
+		if (isTagged(biome, IncubationBiomeTags.HAS_CHICKEN_NEST)) {
 			generation.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, IncubationPlacedFeatures.NEST_CHICKEN);
 		}
+
+		if (ModList.get().isLoaded(IncubationConstants.ENVIRONMENTAL) && isTagged(biome, IncubationBiomeTags.HAS_DUCK_NEST)) {
+			generation.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, IncubationPlacedFeatures.NEST_DUCK);
+		}
+
+		if (ModList.get().isLoaded(IncubationConstants.AUTUMNITY) && isTagged(biome, IncubationBiomeTags.HAS_TURKEY_NEST)) {
+			generation.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, IncubationPlacedFeatures.NEST_TURKEY);
+		}
+	}
+
+	private static boolean isTagged(Biome biome, TagKey<Biome> tagKey) {
+		return ForgeRegistries.BIOMES.tags().getTag(tagKey).contains(biome);
 	}
 }

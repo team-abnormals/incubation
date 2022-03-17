@@ -4,11 +4,17 @@ import com.teamabnormals.blueprint.core.other.tags.BlueprintItemTags;
 import com.teamabnormals.incubation.core.Incubation;
 import com.teamabnormals.incubation.core.registry.IncubationBlocks;
 import com.teamabnormals.incubation.core.registry.IncubationItems;
+import net.minecraft.advancements.critereon.InventoryChangeTrigger;
+import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.core.Registry;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.recipes.*;
+import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.Tag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -41,18 +47,22 @@ public class IncubationRecipeProvider extends RecipeProvider {
 		ShapedRecipeBuilder.shaped(block).define('#', item).pattern("###").pattern("###").pattern("###").group(shapedGroup).unlockedBy(getHasName(item), has(item)).save(consumer, new ResourceLocation(Incubation.MOD_ID, shapedName));
 	}
 
-	private static void cookingRecipes(Consumer<FinishedRecipe> consumer, Tag.Named<Item> tag, ItemLike result) {
+	private static void cookingRecipes(Consumer<FinishedRecipe> consumer, TagKey<Item> tag, ItemLike result) {
 		SimpleCookingRecipeBuilder.smelting(Ingredient.of(tag), result, 0.35F, 200).unlockedBy(getHasName(tag), has(tag)).save(consumer);
 		SimpleCookingRecipeBuilder.smoking(Ingredient.of(tag), result, 0.35F, 100).unlockedBy(getHasName(tag), has(tag)).save(consumer, new ResourceLocation(Incubation.MOD_ID, getItemName(result.asItem()) + "_from_smoking"));
 		SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(tag), result, 0.35F, 600).unlockedBy(getHasName(tag), has(tag)).save(consumer, new ResourceLocation(Incubation.MOD_ID, getItemName(result.asItem()) + "_from_campfire_cooking"));
+	}
+
+	private static InventoryChangeTrigger.TriggerInstance has(TagKey<Item> tag) {
+		return inventoryTrigger(ItemPredicate.Builder.item().of(tag).build());
 	}
 
 	private static String getHasName(ItemLike item) {
 		return "has_" + getItemName(item);
 	}
 
-	private static String getHasName(Tag.Named<Item> item) {
-		return "has_" + item.getName().getPath();
+	private static String getHasName(TagKey<Item> item) {
+		return "has_" + item.location().getPath();
 	}
 
 	private static String getItemName(ItemLike item) {

@@ -10,6 +10,9 @@ public class IncubationConstants {
 	public static final ResourceLocation DUCK = new ResourceLocation(ENVIRONMENTAL, "duck");
 	public static final ResourceLocation TURKEY = new ResourceLocation(AUTUMNITY, "turkey");
 
+	public static final ResourceLocation HAS_DUCK = new ResourceLocation(ENVIRONMENTAL, "has_animal/duck");
+	public static final ResourceLocation HAS_TURKEY = new ResourceLocation(AUTUMNITY, "has_animal/turkey");
+
 	public static final ResourceLocation DUCK_EGG = new ResourceLocation(ENVIRONMENTAL, "duck_egg");
 	public static final ResourceLocation TURKEY_EGG = new ResourceLocation(AUTUMNITY, "turkey_egg");
 }

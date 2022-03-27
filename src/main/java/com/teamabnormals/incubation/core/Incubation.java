@@ -6,6 +6,7 @@ import com.teamabnormals.incubation.core.data.client.IncubationItemModelProvider
 import com.teamabnormals.incubation.core.data.client.IncubationLanguageProvider;
 import com.teamabnormals.incubation.core.data.server.IncubationLootTableProvider;
 import com.teamabnormals.incubation.core.data.server.IncubationRecipeProvider;
+import com.teamabnormals.incubation.core.data.server.modifiers.IncubationAdvancementModifiersProvider;
 import com.teamabnormals.incubation.core.data.server.tags.IncubationBiomeTagsProvider;
 import com.teamabnormals.incubation.core.data.server.tags.IncubationBlockTagsProvider;
 import com.teamabnormals.incubation.core.other.IncubationCompat;
@@ -53,6 +54,7 @@ public class Incubation {
 			generator.addProvider(new IncubationBiomeTagsProvider(generator, fileHelper));
 			generator.addProvider(new IncubationRecipeProvider(generator));
 			generator.addProvider(new IncubationLootTableProvider(generator));
+			generator.addProvider(new IncubationAdvancementModifiersProvider(generator));
 		}
 
 		if (event.includeClient()) {

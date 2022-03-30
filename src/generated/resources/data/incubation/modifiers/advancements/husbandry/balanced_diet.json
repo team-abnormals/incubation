@@ -1,34 +1,27 @@
 {
-  "selector": {
-    "type": "names",
-    "config": [
-      "minecraft:husbandry/balanced_diet"
-    ],
-    "conditions": []
-  },
+  "selector": "minecraft:husbandry/balanced_diet",
   "priority": "normal",
   "modifiers": [
     {
       "type": "criteria",
       "config": {
-        "mode": "modify",
         "criteria": {
-          "incubation:scrambled_eggs": {
-            "trigger": "minecraft:consume_item",
-            "conditions": {
-              "item": {
-                "items": [
-                  "incubation:scrambled_eggs"
-                ]
-              }
-            }
-          },
           "incubation:fried_egg": {
             "trigger": "minecraft:consume_item",
             "conditions": {
               "item": {
                 "items": [
                   "incubation:fried_egg"
+                ]
+              }
+            }
+          },
+          "incubation:scrambled_eggs": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+              "item": {
+                "items": [
+                  "incubation:scrambled_eggs"
                 ]
               }
             }
@@ -41,7 +34,8 @@
           [
             "incubation:scrambled_eggs"
           ]
-        ]
+        ],
+        "should_replace_requirements": false
       }
     }
   ]

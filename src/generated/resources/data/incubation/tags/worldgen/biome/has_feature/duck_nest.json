@@ -1,9 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    {
-      "id": "#environmental:has_animal/duck",
-      "required": false
-    }
-  ]
-}

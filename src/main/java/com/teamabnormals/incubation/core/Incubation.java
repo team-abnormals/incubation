@@ -7,7 +7,6 @@ import com.teamabnormals.incubation.core.data.client.IncubationLanguageProvider;
 import com.teamabnormals.incubation.core.data.server.IncubationLootTableProvider;
 import com.teamabnormals.incubation.core.data.server.IncubationRecipeProvider;
 import com.teamabnormals.incubation.core.data.server.modifiers.IncubationAdvancementModifierProvider;
-import com.teamabnormals.incubation.core.data.server.tags.IncubationBiomeTagsProvider;
 import com.teamabnormals.incubation.core.data.server.tags.IncubationBlockTagsProvider;
 import com.teamabnormals.incubation.core.other.IncubationCompat;
 import com.teamabnormals.incubation.core.registry.IncubationFeatures;
@@ -51,7 +50,6 @@ public class Incubation {
 		if (event.includeServer()) {
 			IncubationBlockTagsProvider blockTags = new IncubationBlockTagsProvider(generator, fileHelper);
 			generator.addProvider(blockTags);
-			generator.addProvider(new IncubationBiomeTagsProvider(generator, fileHelper));
 			generator.addProvider(new IncubationRecipeProvider(generator));
 			generator.addProvider(new IncubationLootTableProvider(generator));
 			generator.addProvider(new IncubationAdvancementModifierProvider(generator));

@@ -36,6 +36,8 @@ public class IncubationEvents {
 		ResourceLocation name = event.getName();
 		BiomeGenerationSettingsBuilder generation = event.getGeneration();
 
+		if (name == null) return;
+
 		if (event.getCategory() == BiomeCategory.FOREST) {
 			generation.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, IncubationPlacedFeatures.NEST_CHICKEN);
 		}

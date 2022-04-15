@@ -41,9 +41,9 @@ public class IncubationFeatures {
 	}
 
 	public static final class IncubationPlacedFeatures {
-		public static final Holder<PlacedFeature> NEST_CHICKEN = register("nest_chicken", IncubationConfiguredFeatures.NEST_CHICKEN, RarityFilter.onAverageOnceEvery(8), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome());
-		public static final Holder<PlacedFeature> NEST_DUCK = register("nest_duck", IncubationConfiguredFeatures.NEST_DUCK, RarityFilter.onAverageOnceEvery(8), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome());
-		public static final Holder<PlacedFeature> NEST_TURKEY = register("nest_turkey", IncubationConfiguredFeatures.NEST_TURKEY, RarityFilter.onAverageOnceEvery(8), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome());
+		public static final Holder<PlacedFeature> NEST_CHICKEN = register("nest_chicken", IncubationConfiguredFeatures.NEST_CHICKEN, RarityFilter.onAverageOnceEvery(32), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome());
+		public static final Holder<PlacedFeature> NEST_DUCK = register("nest_duck", IncubationConfiguredFeatures.NEST_DUCK, RarityFilter.onAverageOnceEvery(32), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome());
+		public static final Holder<PlacedFeature> NEST_TURKEY = register("nest_turkey", IncubationConfiguredFeatures.NEST_TURKEY, RarityFilter.onAverageOnceEvery(32), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome());
 
 		public static Holder<PlacedFeature> register(String name, Holder<? extends ConfiguredFeature<?, ?>> configuredFeature, PlacementModifier... placementModifiers) {
 			return BuiltinRegistries.register(BuiltinRegistries.PLACED_FEATURE, new ResourceLocation(Incubation.MOD_ID, name), new PlacedFeature(Holder.hackyErase(configuredFeature), List.of(placementModifiers)));

@@ -8,11 +8,7 @@ import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.core.Registry;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.data.recipes.RecipeProvider;
-import net.minecraft.data.recipes.ShapedRecipeBuilder;
-import net.minecraft.data.recipes.ShapelessRecipeBuilder;
-import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
+import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -38,11 +34,11 @@ public class IncubationRecipeProvider extends RecipeProvider {
 		ShapedRecipeBuilder.shaped(IncubationBlocks.HAY_NEST.get()).define('#', Items.WHEAT).pattern("# #").pattern("###").unlockedBy(getHasName(Items.WHEAT), has(Items.WHEAT)).save(consumer);
 	}
 
-	private static void nineBlockStorageRecipes(Consumer<FinishedRecipe> consumer, ItemLike item, ItemLike block) {
+	protected static void nineBlockStorageRecipes(Consumer<FinishedRecipe> consumer, ItemLike item, ItemLike block) {
 		nineBlockStorageRecipes(consumer, item, block, getItemName(block), null, getItemName(item), null);
 	}
 
-	private static void nineBlockStorageRecipes(Consumer<FinishedRecipe> consumer, ItemLike item, ItemLike block, String shapedName, @Nullable String shapedGroup, String shapelessName, @Nullable String shapelessGroup) {
+	protected static void nineBlockStorageRecipes(Consumer<FinishedRecipe> consumer, ItemLike item, ItemLike block, String shapedName, @Nullable String shapedGroup, String shapelessName, @Nullable String shapelessGroup) {
 		ShapelessRecipeBuilder.shapeless(item, 9).requires(block).group(shapelessGroup).unlockedBy(getHasName(block), has(block)).save(consumer, new ResourceLocation(Incubation.MOD_ID, shapelessName));
 		ShapedRecipeBuilder.shaped(block).define('#', item).pattern("###").pattern("###").pattern("###").group(shapedGroup).unlockedBy(getHasName(item), has(item)).save(consumer, new ResourceLocation(Incubation.MOD_ID, shapedName));
 	}
@@ -53,11 +49,11 @@ public class IncubationRecipeProvider extends RecipeProvider {
 		SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(tag), result, 0.35F, 600).unlockedBy(getHasName(tag), has(tag)).save(consumer, new ResourceLocation(Incubation.MOD_ID, getItemName(result.asItem()) + "_from_campfire_cooking"));
 	}
 
-	private static InventoryChangeTrigger.TriggerInstance has(TagKey<Item> tag) {
+	protected static InventoryChangeTrigger.TriggerInstance has(TagKey<Item> tag) {
 		return inventoryTrigger(ItemPredicate.Builder.item().of(tag).build());
 	}
 
-	private static String getHasName(ItemLike item) {
+	protected static String getHasName(ItemLike item) {
 		return "has_" + getItemName(item);
 	}
 
@@ -65,7 +61,7 @@ public class IncubationRecipeProvider extends RecipeProvider {
 		return "has_" + item.location().getPath();
 	}
 
-	private static String getItemName(ItemLike item) {
+	protected static String getItemName(ItemLike item) {
 		return Registry.ITEM.getKey(item.asItem()).getPath();
 	}
 }

@@ -1,4 +1,4 @@
-package com.teamabnormals.incubation.api;
+package com.teamabnormals.incubation.core.api.api;
 
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.item.Item;

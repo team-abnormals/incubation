@@ -21,15 +21,15 @@ public class LayEggInNestGoal extends MoveToBlockGoal {
 	public LayEggInNestGoal(Animal birdIn, double speedIn) {
 		super(birdIn, speedIn, 16);
 		this.bird = birdIn;
-		this.eggLayer = (EggLayer) birdIn;
+		this.eggLayer = (EggLayer) (Animal) birdIn;
 	}
 
 	public boolean canUse() {
-		return !this.bird.isBaby() && !this.eggLayer.isBirdJockey() && this.eggLayer.getEggTimer() < 400 && super.canUse();
+		return this.canEggBeLaid() && super.canUse();
 	}
 
 	public boolean canContinueToUse() {
-		return super.canContinueToUse() && !this.bird.isBaby() && !this.eggLayer.isBirdJockey() && this.eggLayer.getEggTimer() < 400;
+		return this.canEggBeLaid() && super.canContinueToUse();
 	}
 
 	protected int nextStartTick(PathfinderMob creatureIn) {
@@ -38,16 +38,13 @@ public class LayEggInNestGoal extends MoveToBlockGoal {
 
 	public void start() {
 		super.start();
-		this.eggCounter = 30;
+		this.eggCounter = this.adjustedTickDelay(30);
 	}
 
 	public void tick() {
 		super.tick();
-		if (this.isReachedTarget()) {
-			if (this.eggCounter > 0) {
-				this.eggCounter--;
-			}
-
+		if (this.isReachedTarget() && this.canEggBeLaid()) {
+			this.eggCounter = Math.max(0, this.eggCounter - 1);
 			if (this.eggCounter <= 0) {
 				BlockPos blockpos = this.blockPos.above();
 				BlockState blockstate = this.bird.level.getBlockState(blockpos);
@@ -66,15 +63,19 @@ public class LayEggInNestGoal extends MoveToBlockGoal {
 			}
 		}
 	}
+	   
+	private boolean canEggBeLaid() {
+		return !this.bird.isBaby() && !this.eggLayer.isBirdJockey() && this.eggLayer.getEggTimer() < 400;
+	}
 
 	private void resetBird() {
-		Random random = bird.getRandom();
+		Random random = this.bird.getRandom();
 		this.bird.playSound(this.eggLayer.getEggLayingSound(), 1.0F, (random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F);
 		this.eggLayer.setEggTimer(this.eggLayer.getNextEggTime(random));
 	}
 
 	protected boolean isValidTarget(LevelReader worldIn, BlockPos pos) {
-		BlockState blockstate = this.bird.level.getBlockState(pos.above());
+		BlockState blockstate = worldIn.getBlockState(pos.above());
 		Block block = blockstate.getBlock();
 
 		return block instanceof EmptyNestBlock || (block instanceof BirdNestBlock && ((BirdNestBlock) block).getEgg() == this.eggLayer.getEggItem() && blockstate.getValue(BirdNestBlock.EGGS) < 6);

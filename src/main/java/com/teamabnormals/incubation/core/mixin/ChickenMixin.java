@@ -15,9 +15,9 @@ import org.spongepowered.asm.mixin.Shadow;
 import java.util.Random;
 
 @Mixin(Chicken.class)
-public abstract class ChickenEntityMixin extends Animal implements EggLayer {
+public abstract class ChickenMixin extends Animal implements EggLayer {
 
-	protected ChickenEntityMixin(EntityType<? extends Animal> type, Level worldIn) {
+	protected ChickenMixin(EntityType<? extends Animal> type, Level worldIn) {
 		super(type, worldIn);
 	}
 

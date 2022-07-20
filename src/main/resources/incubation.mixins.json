@@ -5,7 +5,7 @@
   "minVersion": "0.8",
   "refmap": "incubation.refmap.json",
   "mixins": [
-    "ChickenEntityMixin"
+    "ChickenMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -61,7 +61,7 @@ public class EmptyNestBlock extends Block {
 				return InteractionResult.sidedSuccess(worldIn.isClientSide);
 			}
 
-			return InteractionResult.CONSUME;
+			return InteractionResult.PASS;
 		} else {
 			return super.use(state, worldIn, pos, player, handIn, hit);
 		}

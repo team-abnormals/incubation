@@ -73,12 +73,15 @@ public class BirdNestBlock extends BaseEntityBlock {
 						itemstack.shrink(1);
 					}
 					worldIn.setBlock(pos, state.setValue(EGGS, i + 1), 3);
+					return InteractionResult.sidedSuccess(worldIn.isClientSide);
+				} else {
+					return InteractionResult.CONSUME;
 				}
 			} else {
 				popResource(worldIn, pos, new ItemStack(this.egg.get()));
 				this.removeEgg(worldIn, pos, state);
+				return InteractionResult.sidedSuccess(worldIn.isClientSide);
 			}
-			return InteractionResult.sidedSuccess(worldIn.isClientSide);
 		} else {
 			return super.use(state, worldIn, pos, player, handIn, hit);
 		}

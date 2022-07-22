@@ -1,0 +1,15 @@
+{
+  "block.incubation.chicken_egg_crate": "Crate o' fowl's eggs",
+  "block.incubation.hay_chicken_nest": "Fowl's hops'en vessel",
+  "block.incubation.hay_duck_nest": "Bilgefowl's hops'en vessel",
+  "block.incubation.hay_nest": "Hops'en vessel",
+  "block.incubation.hay_turkey_nest": "Foul fowl's hops'en vessel",
+  "block.incubation.turtle_egg_crate": "Crate o' shell'd beast's eggs",
+  "block.incubation.twig_chicken_nest": "Fowl's timber'd vessel",
+  "block.incubation.twig_duck_nest": "Bilgefowl's timber'd vessel",
+  "block.incubation.twig_nest": "Timber'd vessel",
+  "block.incubation.twig_turkey_nest": "Fall fowl's timber'd vessel",
+  "item.incubation.chicken_egg": "Fowl's cackle fruit",
+  "item.incubation.fried_egg": "Charred cackle fruit",
+  "item.incubation.scrambled_eggs": "Rumbled cackle fruit"
+}

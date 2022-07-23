@@ -1,6 +1,6 @@
 package com.teamabnormals.incubation.core.mixin;
 
-import com.teamabnormals.incubation.core.api.api.EggLayer;
+import com.teamabnormals.incubation.core.api.EggLayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EntityType;

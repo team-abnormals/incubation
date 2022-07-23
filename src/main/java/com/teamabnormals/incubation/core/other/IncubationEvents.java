@@ -3,7 +3,7 @@ package com.teamabnormals.incubation.core.other;
 import com.teamabnormals.blueprint.core.util.DataUtil;
 import com.teamabnormals.incubation.common.entity.ai.goal.LayEggInNestGoal;
 import com.teamabnormals.incubation.core.Incubation;
-import com.teamabnormals.incubation.core.api.api.EggLayer;
+import com.teamabnormals.incubation.core.api.EggLayer;
 import com.teamabnormals.incubation.core.registry.IncubationFeatures.IncubationPlacedFeatures;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;

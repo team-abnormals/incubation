@@ -14,8 +14,8 @@ import java.util.Collection;
 
 public class IncubationAdvancementModifierProvider extends AdvancementModifierProvider {
 
-	public IncubationAdvancementModifierProvider(DataGenerator dataGenerator) {
-		super(dataGenerator, Incubation.MOD_ID);
+	public IncubationAdvancementModifierProvider(DataGenerator generator) {
+		super(generator, Incubation.MOD_ID);
 	}
 
 	@Override

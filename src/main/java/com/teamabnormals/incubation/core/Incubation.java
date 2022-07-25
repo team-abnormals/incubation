@@ -7,6 +7,8 @@ import com.teamabnormals.incubation.core.data.client.IncubationLanguageProvider;
 import com.teamabnormals.incubation.core.data.server.IncubationLootTableProvider;
 import com.teamabnormals.incubation.core.data.server.IncubationRecipeProvider;
 import com.teamabnormals.incubation.core.data.server.modifiers.IncubationAdvancementModifierProvider;
+import com.teamabnormals.incubation.core.data.server.tags.IncubationBlockTagsProvider;
+import com.teamabnormals.incubation.core.data.server.tags.IncubationItemTagsProvider;
 import com.teamabnormals.incubation.core.other.IncubationCompat;
 import com.teamabnormals.incubation.core.registry.IncubationFeatures;
 import com.teamabnormals.incubation.core.registry.IncubationStructures;
@@ -26,10 +28,10 @@ public class Incubation {
 
 	public Incubation() {
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+		MinecraftForge.EVENT_BUS.register(this);
 
 		REGISTRY_HELPER.register(bus);
 		IncubationFeatures.FEATURES.register(bus);
-		MinecraftForge.EVENT_BUS.register(this);
 
 		bus.addListener(this::commonSetup);
 		bus.addListener(this::dataSetup);
@@ -44,17 +46,20 @@ public class Incubation {
 
 	private void dataSetup(GatherDataEvent event) {
 		DataGenerator generator = event.getGenerator();
-		ExistingFileHelper fileHelper = event.getExistingFileHelper();
+		ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
 
 		if (event.includeServer()) {
+			IncubationBlockTagsProvider blockTags = new IncubationBlockTagsProvider(generator, existingFileHelper);
+			generator.addProvider(blockTags);
+			generator.addProvider(new IncubationItemTagsProvider(generator, blockTags, existingFileHelper));
 			generator.addProvider(new IncubationRecipeProvider(generator));
 			generator.addProvider(new IncubationLootTableProvider(generator));
 			generator.addProvider(new IncubationAdvancementModifierProvider(generator));
 		}
 
 		if (event.includeClient()) {
-			generator.addProvider(new IncubationItemModelProvider(generator, fileHelper));
-			generator.addProvider(new IncubationBlockStateProvider(generator, fileHelper));
+			generator.addProvider(new IncubationItemModelProvider(generator, existingFileHelper));
+			generator.addProvider(new IncubationBlockStateProvider(generator, existingFileHelper));
 			generator.addProvider(new IncubationLanguageProvider(generator));
 		}
 	}

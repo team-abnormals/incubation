@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "incubation:hay_nest",
+    "incubation:hay_chicken_nest",
+    "incubation:hay_duck_nest",
+    "incubation:hay_turkey_nest"
+  ]
+}

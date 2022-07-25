@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "incubation:twig_nest",
+    "incubation:twig_chicken_nest",
+    "incubation:twig_duck_nest",
+    "incubation:twig_turkey_nest"
+  ]
+}

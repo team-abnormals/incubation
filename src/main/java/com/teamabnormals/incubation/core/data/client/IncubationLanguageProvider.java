@@ -11,8 +11,8 @@ import net.minecraftforge.common.data.LanguageProvider;
 import org.apache.commons.lang3.text.WordUtils;
 
 public class IncubationLanguageProvider extends LanguageProvider {
-	public IncubationLanguageProvider(DataGenerator gen) {
-		super(gen, Incubation.MOD_ID, "en_us");
+	public IncubationLanguageProvider(DataGenerator generator) {
+		super(generator, Incubation.MOD_ID, "en_us");
 	}
 
 	@Override

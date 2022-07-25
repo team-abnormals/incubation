@@ -1,0 +1,15 @@
+{
+  "block.incubation.chicken_egg_crate": "Тауық жұмыртқа жәшігі",
+  "block.incubation.hay_chicken_nest": "Пішен тауық ұясы",
+  "block.incubation.hay_duck_nest": "Пішен үйрек ұясы",
+  "block.incubation.hay_nest": "Пішен ұя",
+  "block.incubation.hay_turkey_nest": "Пішен түйеқұс ұясы",
+  "block.incubation.turtle_egg_crate": "Тасбақа жұмыртқа жәшігі",
+  "block.incubation.twig_chicken_nest": "Шырпы тауық ұясы",
+  "block.incubation.twig_duck_nest": "Шырпы үйрек ұясы",
+  "block.incubation.twig_nest": "Шырпы ұя",
+  "block.incubation.twig_turkey_nest": "Шырпы түйеқұс ұясы",
+  "item.incubation.chicken_egg": "Тауық жұмыртқасы",
+  "item.incubation.fried_egg": "Қуырылған жұмыртқа",
+  "item.incubation.scrambled_eggs": "Омлет"
+}

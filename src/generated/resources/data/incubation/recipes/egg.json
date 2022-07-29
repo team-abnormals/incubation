@@ -6,7 +6,7 @@
     }
   ],
   "result": {
-    "item": "minecraft:egg",
-    "count": 9
+    "count": 9,
+    "item": "minecraft:egg"
   }
 }

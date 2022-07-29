@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#incubation:has_feature/turkey_nest",
+  "features": "incubation:nest_turkey",
+  "step": "vegetal_decoration"
+}

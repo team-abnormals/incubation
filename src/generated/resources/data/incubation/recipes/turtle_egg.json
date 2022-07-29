@@ -6,7 +6,7 @@
     }
   ],
   "result": {
-    "item": "minecraft:turtle_egg",
-    "count": 9
+    "count": 9,
+    "item": "minecraft:turtle_egg"
   }
 }

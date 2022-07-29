@@ -3,16 +3,14 @@ package com.teamabnormals.incubation.common.entity.ai.goal;
 import com.teamabnormals.incubation.common.block.BirdNestBlock;
 import com.teamabnormals.incubation.common.block.EmptyNestBlock;
 import com.teamabnormals.incubation.core.api.EggLayer;
-
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-
-import java.util.Random;
 
 public class LayEggInNestGoal extends MoveToBlockGoal {
 	private final Animal bird;
@@ -64,13 +62,13 @@ public class LayEggInNestGoal extends MoveToBlockGoal {
 			}
 		}
 	}
-	   
+
 	private boolean canEggBeLaid() {
 		return !this.bird.isBaby() && !this.eggLayer.isBirdJockey() && this.eggLayer.getEggTimer() < 400;
 	}
 
 	private void resetBird() {
-		Random random = this.bird.getRandom();
+		RandomSource random = this.bird.getRandom();
 		this.bird.playSound(this.eggLayer.getEggLayingSound(), 1.0F, (random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F);
 		this.eggLayer.setEggTimer(this.eggLayer.getNextEggTime(random));
 	}

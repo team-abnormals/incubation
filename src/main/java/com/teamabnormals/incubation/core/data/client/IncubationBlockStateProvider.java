@@ -12,6 +12,7 @@ import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.client.model.generators.ModelFile.ExistingModelFile;
 import net.minecraftforge.client.model.generators.ModelFile.UncheckedModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class IncubationBlockStateProvider extends BlockStateProvider {
 
@@ -31,7 +32,7 @@ public class IncubationBlockStateProvider extends BlockStateProvider {
 	}
 
 	public void cubeBottomTop(Block block) {
-		ResourceLocation name = block.getRegistryName();
+		ResourceLocation name = ForgeRegistries.BLOCKS.getKey(block);
 		this.cubeBottomTop(block, prefix("block/", suffix(name, "_side")), prefix("block/", suffix(name, "_bottom")), prefix("block/", suffix(name, "_top")));
 	}
 
@@ -79,12 +80,12 @@ public class IncubationBlockStateProvider extends BlockStateProvider {
 	}
 
 	private void generated(ItemLike item) {
-		ResourceLocation itemName = item.asItem().getRegistryName();
+		ResourceLocation itemName = ForgeRegistries.ITEMS.getKey(item.asItem());
 		itemModels().withExistingParent(itemName.getPath(), "item/generated").texture("layer0", new ResourceLocation(Incubation.MOD_ID, "item/" + itemName.getPath()));
 	}
 
 	private String name(Block block) {
-		return block.getRegistryName().getPath();
+		return ForgeRegistries.BLOCKS.getKey(block).getPath();
 	}
 
 	private ResourceLocation prefix(String prefix, ResourceLocation rl) {

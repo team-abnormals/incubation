@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec;
 import com.teamabnormals.incubation.common.block.BirdNestBlock;
 import com.teamabnormals.incubation.common.levelgen.feature.configurations.NestConfiguration;
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
@@ -16,8 +17,6 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.Random;
-
 public class BirdNestFeature extends Feature<NestConfiguration> {
 	public BirdNestFeature(Codec<NestConfiguration> config) {
 		super(config);
@@ -28,14 +27,14 @@ public class BirdNestFeature extends Feature<NestConfiguration> {
 		BlockState blockstate = context.config().state.setValue(BirdNestBlock.EGGS, 2 + context.random().nextInt(3));
 		WorldGenLevel level = context.level();
 		BlockPos pos = context.origin();
-		Random random = context.random();
+		RandomSource random = context.random();
 
 		int y = level.getHeight(Heightmap.Types.WORLD_SURFACE, pos.getX(), pos.getZ());
 		BlockPos blockpos = new BlockPos(pos.getX(), y, pos.getZ());
 
 		if (level.isEmptyBlock(blockpos) && level.getBlockState(blockpos.below()).getBlock() == Blocks.GRASS_BLOCK) {
 			level.setBlock(blockpos, blockstate, 2);
-			EntityType<?> entityType = ForgeRegistries.ENTITIES.getValue(context.config().entityType);
+			EntityType<?> entityType = ForgeRegistries.ENTITY_TYPES.getValue(context.config().entityType);
 			if (entityType != null && entityType.create(level.getLevel()) instanceof Mob) {
 				for (int i = 0; i < 4; ++i) {
 					double posX = (double) pos.getX() + (random.nextDouble() - random.nextDouble()) * 4.5D;

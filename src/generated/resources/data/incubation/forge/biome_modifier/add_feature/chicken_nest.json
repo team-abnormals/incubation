@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#incubation:has_feature/chicken_nest",
+  "features": "incubation:nest_chicken",
+  "step": "vegetal_decoration"
+}

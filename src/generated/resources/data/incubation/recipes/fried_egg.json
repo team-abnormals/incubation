@@ -1,9 +1,9 @@
 {
   "type": "minecraft:smelting",
+  "cookingtime": 200,
+  "experience": 0.35,
   "ingredient": {
     "tag": "forge:eggs"
   },
-  "result": "incubation:fried_egg",
-  "experience": 0.35,
-  "cookingtime": 200
+  "result": "incubation:fried_egg"
 }

@@ -7,6 +7,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class IncubationItemModelProvider extends ItemModelProvider {
 
@@ -21,7 +22,7 @@ public class IncubationItemModelProvider extends ItemModelProvider {
 	}
 
 	private void generated(ItemLike item) {
-		ResourceLocation itemName = item.asItem().getRegistryName();
+		ResourceLocation itemName = ForgeRegistries.ITEMS.getKey(item.asItem());
 		withExistingParent(itemName.getPath(), "item/generated").texture("layer0", new ResourceLocation(this.modid, "item/" + itemName.getPath()));
 	}
 }

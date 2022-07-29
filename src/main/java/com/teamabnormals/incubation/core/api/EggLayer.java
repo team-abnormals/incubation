@@ -1,9 +1,8 @@
 package com.teamabnormals.incubation.core.api;
 
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.Item;
-
-import java.util.Random;
 
 public interface EggLayer {
 	int getEggTimer();
@@ -14,7 +13,7 @@ public interface EggLayer {
 
 	Item getEggItem();
 
-	int getNextEggTime(Random rand);
+	int getNextEggTime(RandomSource rand);
 
 	SoundEvent getEggLayingSound();
 }

@@ -8,6 +8,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.LanguageProvider;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.commons.lang3.text.WordUtils;
 
 public class IncubationLanguageProvider extends LanguageProvider {
@@ -33,13 +34,15 @@ public class IncubationLanguageProvider extends LanguageProvider {
 	}
 
 	private void add(Item item) {
-		if (item.getRegistryName() != null)
-			this.add(item, format(item.getRegistryName()));
+		ResourceLocation name = ForgeRegistries.ITEMS.getKey(item);
+		if (name != null)
+			this.add(item, format(name));
 	}
 
 	private void add(Block block) {
-		if (block.getRegistryName() != null)
-			this.add(block, format(block.getRegistryName()));
+		ResourceLocation name = ForgeRegistries.BLOCKS.getKey(block);
+		if (name != null)
+			this.add(block, format(name));
 	}
 
 	private String format(ResourceLocation registryName) {

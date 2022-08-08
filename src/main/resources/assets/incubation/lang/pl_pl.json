@@ -1,0 +1,15 @@
+{
+  "block.incubation.chicken_egg_crate": "Skrzynka kurzych jajek",
+  "block.incubation.hay_chicken_nest": "Kurze gniazdo z siana",
+  "block.incubation.hay_duck_nest": "Kacze gniazdo z siana",
+  "block.incubation.hay_nest": "Gniazdo z siana",
+  "block.incubation.hay_turkey_nest": "Indycze gniazdo z siana",
+  "block.incubation.turtle_egg_crate": "Skrzynka żółwich jajek",
+  "block.incubation.twig_chicken_nest": "Kurze gniazdo z gałęzi",
+  "block.incubation.twig_duck_nest": "Kacze gniazdo z gałęzi",
+  "block.incubation.twig_nest": "Gniazdo z gałęzi",
+  "block.incubation.twig_turkey_nest": "Indycze gniazdo z gałęzi",
+  "item.incubation.chicken_egg": "Kurze jajko",
+  "item.incubation.fried_egg": "Jajko sadzone",
+  "item.incubation.scrambled_eggs": "Jajecznica"
+}

@@ -1,0 +1,15 @@
+{
+  "block.incubation.chicken_egg_crate": "Ящик для курячих яєць",
+  "block.incubation.hay_chicken_nest": "Куряче гніздо",
+  "block.incubation.hay_duck_nest": "Гніздо качки з соломи",
+  "block.incubation.hay_nest": "Гніздо з соломи",
+  "block.incubation.hay_turkey_nest": "Індиче гніздо з соломи",
+  "block.incubation.turtle_egg_crate": "Ящик для черепаших яєць",
+  "block.incubation.twig_chicken_nest": "Гілочка курячого Гнізда",
+  "block.incubation.twig_duck_nest": "Гілочка качиного Гнізда",
+  "block.incubation.twig_nest": "Гніздо з гілок",
+  "block.incubation.twig_turkey_nest": "Гілочка індичого Гнізда",
+  "item.incubation.chicken_egg": "Куряче Яйце",
+  "item.incubation.fried_egg": "Яєчниця",
+  "item.incubation.scrambled_eggs": "Омлет"
+}

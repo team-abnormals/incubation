@@ -7,7 +7,7 @@ license = "https://github.com/team-abnormals/incubation/blob/main/LICENSE.txt"
     modId = "incubation"
     version = "${file.jarVersion}"
     logoFile = "logo.png"
-    itemIcon = "incubation:fried_egg"
+    itemIcon = "incubation:hay_nest"
     configBackground = "minecraft:textures/block/hay_block_side.png"
     authors = "Team Abnormals"
     credits = "bageldotjpg"
@@ -20,20 +20,20 @@ license = "https://github.com/team-abnormals/incubation/blob/main/LICENSE.txt"
 [[dependencies.incubation]]
     modId = "minecraft"
     mandatory = true
-    versionRange = "[1.19,1.20)"
-    ordering = "NONE"
+    versionRange = "[1.19.2,1.19.3)"
+    ordering = "AFTER"
     side = "BOTH"
 
 [[dependencies.incubation]]
     modId = "forge"
     mandatory = true
-    versionRange = "[41.0.100,)"
-    ordering = "NONE"
+    versionRange = "[43.1.0,)"
+    ordering = "AFTER"
     side = "BOTH"
 
 [[dependencies.incubation]]
     modId = "blueprint"
     mandatory = true
-    versionRange = "[6.0.4,)"
+    versionRange = "[6.1.0,)"
     ordering = "AFTER"
     side = "BOTH"

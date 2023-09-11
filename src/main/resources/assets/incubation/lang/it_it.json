@@ -1,0 +1,15 @@
+{
+  "block.incubation.chicken_egg_crate": "Cassa di uova di gallina",
+  "block.incubation.hay_chicken_nest": "Nido di fieno di gallina",
+  "block.incubation.hay_duck_nest": "Nido di fieno d'anatra",
+  "block.incubation.hay_nest": "Nido di fieno",
+  "block.incubation.hay_turkey_nest": "Nido di fieno di tacchino",
+  "block.incubation.turtle_egg_crate": "Cassa di uova di tartaruga",
+  "block.incubation.twig_chicken_nest": "Nido di ramoscelli di gallina",
+  "block.incubation.twig_duck_nest": "Nido di ramoscelli d'anatra",
+  "block.incubation.twig_nest": "Nido di ramoscelli",
+  "block.incubation.twig_turkey_nest": "Nido di ramoscelli di tacchino",
+  "item.incubation.chicken_egg": "Uovo di gallina",
+  "item.incubation.fried_egg": "Uovo fritto",
+  "item.incubation.scrambled_eggs": "Uova strapazzate"
+}

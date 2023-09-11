@@ -1,0 +1,15 @@
+{
+  "block.incubation.chicken_egg_crate": "달걀 상자",
+  "block.incubation.hay_chicken_nest": "건초 닭 둥지",
+  "block.incubation.hay_duck_nest": "건초 오리 둥지",
+  "block.incubation.hay_nest": "건초 둥지",
+  "block.incubation.hay_turkey_nest": "건초 칠면조 둥지",
+  "block.incubation.turtle_egg_crate": "거북 알 상자",
+  "block.incubation.twig_chicken_nest": "나뭇가지 닭 둥지",
+  "block.incubation.twig_duck_nest": "나뭇가지 오리 둥지",
+  "block.incubation.twig_nest": "나뭇가지 둥지",
+  "block.incubation.twig_turkey_nest": "나뭇가지 칠면조 둥지",
+  "item.incubation.chicken_egg": "달걀",
+  "item.incubation.fried_egg": "달걀 후라이",
+  "item.incubation.scrambled_eggs": "스크램블 에그"
+}

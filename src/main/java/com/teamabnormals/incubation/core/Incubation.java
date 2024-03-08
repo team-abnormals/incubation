@@ -6,14 +6,13 @@ import com.teamabnormals.incubation.core.data.client.IncubationItemModelProvider
 import com.teamabnormals.incubation.core.data.client.IncubationLanguageProvider;
 import com.teamabnormals.incubation.core.data.server.IncubationLootTableProvider;
 import com.teamabnormals.incubation.core.data.server.IncubationRecipeProvider;
+import com.teamabnormals.incubation.core.data.server.IncubationDatapackBuiltinEntriesProvider;
 import com.teamabnormals.incubation.core.data.server.modifiers.IncubationAdvancementModifierProvider;
 import com.teamabnormals.incubation.core.data.server.tags.IncubationBiomeTagsProvider;
 import com.teamabnormals.incubation.core.data.server.tags.IncubationBlockTagsProvider;
 import com.teamabnormals.incubation.core.data.server.tags.IncubationItemTagsProvider;
 import com.teamabnormals.incubation.core.other.IncubationCompat;
 import com.teamabnormals.incubation.core.registry.IncubationFeatures;
-import com.teamabnormals.incubation.core.registry.IncubationFeatures.IncubationConfiguredFeatures;
-import com.teamabnormals.incubation.core.registry.IncubationFeatures.IncubationPlacedFeatures;
 import com.teamabnormals.incubation.core.registry.IncubationItems;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.DataGenerator;
@@ -41,8 +40,6 @@ public class Incubation {
 
 		REGISTRY_HELPER.register(bus);
 		IncubationFeatures.FEATURES.register(bus);
-		IncubationConfiguredFeatures.CONFIGURED_FEATURES.register(bus);
-		IncubationPlacedFeatures.PLACED_FEATURES.register(bus);
 
 		bus.addListener(this::commonSetup);
 		bus.addListener(this::dataSetup);
@@ -72,7 +69,7 @@ public class Incubation {
 		generator.addProvider(includeServer, new IncubationRecipeProvider(output));
 		generator.addProvider(includeServer, new IncubationLootTableProvider(output));
 		generator.addProvider(includeServer, new IncubationAdvancementModifierProvider(output, provider));
-//		generator.addProvider(includeServer, IncubationBiomeModifierProvider.create(generator, helper));
+		generator.addProvider(includeServer, new IncubationDatapackBuiltinEntriesProvider(output, provider));
 
 		boolean includeClient = event.includeClient();
 		generator.addProvider(includeClient, new IncubationItemModelProvider(output, helper));

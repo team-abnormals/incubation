@@ -1,0 +1,12 @@
+{
+  "type": "incubation:bird_nest",
+  "config": {
+    "entity_id": "minecraft:chicken",
+    "state": {
+      "Name": "incubation:twig_chicken_nest",
+      "Properties": {
+        "eggs": "1"
+      }
+    }
+  }
+}

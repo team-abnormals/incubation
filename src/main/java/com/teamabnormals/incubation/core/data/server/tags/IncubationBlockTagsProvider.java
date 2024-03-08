@@ -3,19 +3,22 @@ package com.teamabnormals.incubation.core.data.server.tags;
 import com.teamabnormals.incubation.core.Incubation;
 import com.teamabnormals.incubation.core.other.tags.IncubationBlockTags;
 import com.teamabnormals.incubation.core.registry.IncubationBlocks;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.tags.BlockTagsProvider;
+import net.minecraft.core.HolderLookup.Provider;
+import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
+import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
+
+import java.util.concurrent.CompletableFuture;
 
 public class IncubationBlockTagsProvider extends BlockTagsProvider {
 
-	public IncubationBlockTagsProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
-		super(generator, Incubation.MOD_ID, existingFileHelper);
+	public IncubationBlockTagsProvider(PackOutput output, CompletableFuture<Provider> provider, ExistingFileHelper helper) {
+		super(output, provider, Incubation.MOD_ID, helper);
 	}
 
 	@Override
-	protected void addTags() {
+	protected void addTags(Provider provider) {
 		this.tag(BlockTags.MINEABLE_WITH_AXE).add(IncubationBlocks.CHICKEN_EGG_CRATE.get(), IncubationBlocks.TURTLE_EGG_CRATE.get());
 		this.tag(BlockTags.MINEABLE_WITH_HOE).addTag(IncubationBlockTags.BIRD_NESTS);
 

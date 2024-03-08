@@ -1,0 +1,17 @@
+{
+  "molding": "json",
+  "remolder": {
+    "type": "add",
+    "target": "elements[]",
+    "value": {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "incubation:village/taiga_chicken_coop_1",
+        "processors": "minecraft:mossify_10_percent",
+        "projection": "rigid"
+      },
+      "weight": 2
+    }
+  },
+  "selector": "minecraft:worldgen/template_pool/village/taiga/houses"
+}

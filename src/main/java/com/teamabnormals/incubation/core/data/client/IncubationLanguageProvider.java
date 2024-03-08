@@ -3,7 +3,7 @@ package com.teamabnormals.incubation.core.data.client;
 import com.teamabnormals.incubation.core.Incubation;
 import com.teamabnormals.incubation.core.registry.IncubationBlocks;
 import com.teamabnormals.incubation.core.registry.IncubationItems;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -12,8 +12,9 @@ import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.commons.lang3.text.WordUtils;
 
 public class IncubationLanguageProvider extends LanguageProvider {
-	public IncubationLanguageProvider(DataGenerator generator) {
-		super(generator, Incubation.MOD_ID, "en_us");
+
+	public IncubationLanguageProvider(PackOutput output) {
+		super(output, Incubation.MOD_ID, "en_us");
 	}
 
 	@Override

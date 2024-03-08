@@ -3,16 +3,16 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "incubation:turtle_egg"
+        "recipe": "incubation:turtle_egg_crate"
       },
       "trigger": "minecraft:recipe_unlocked"
     },
-    "has_turtle_egg_crate": {
+    "has_turtle_egg": {
       "conditions": {
         "items": [
           {
             "items": [
-              "incubation:turtle_egg_crate"
+              "minecraft:turtle_egg"
             ]
           }
         ]
@@ -22,13 +22,14 @@
   },
   "requirements": [
     [
-      "has_turtle_egg_crate",
+      "has_turtle_egg",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "incubation:turtle_egg"
+      "incubation:turtle_egg_crate"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

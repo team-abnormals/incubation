@@ -28,5 +28,6 @@
     "recipes": [
       "incubation:fried_egg_from_smoking"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

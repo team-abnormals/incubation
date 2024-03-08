@@ -6,21 +6,23 @@ import com.teamabnormals.incubation.core.Incubation;
 import com.teamabnormals.incubation.core.registry.IncubationItems;
 import net.minecraft.advancements.RequirementsStrategy;
 import net.minecraft.advancements.critereon.ConsumeItemTrigger;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.core.HolderLookup.Provider;
+import net.minecraft.data.PackOutput;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.Collection;
+import java.util.concurrent.CompletableFuture;
 
 public class IncubationAdvancementModifierProvider extends AdvancementModifierProvider {
 
-	public IncubationAdvancementModifierProvider(DataGenerator generator) {
-		super(generator, Incubation.MOD_ID);
+	public IncubationAdvancementModifierProvider(PackOutput output, CompletableFuture<Provider> provider) {
+		super(Incubation.MOD_ID, output, provider);
 	}
 
 	@Override
-	protected void registerEntries() {
+	protected void registerEntries(Provider provider) {
 		CriteriaModifier.Builder balancedDiet = CriteriaModifier.builder(this.modId);
 		Collection<RegistryObject<Item>> items = IncubationItems.HELPER.getDeferredRegister().getEntries();
 		items.forEach(item -> {

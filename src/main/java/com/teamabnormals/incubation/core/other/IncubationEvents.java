@@ -21,25 +21,4 @@ public class IncubationEvents {
 			}
 		}
 	}
-
-//	@SubscribeEvent
-//	public static void onBiomeLoad(BiomeLoadingEvent event) {
-//		ResourceLocation name = event.getName();
-//		BiomeCategory category = event.getCategory();
-//		BiomeGenerationSettingsBuilder generation = event.getGeneration();
-//
-//		if (name == null) return;
-//
-//		if (category.equals(BiomeCategory.FOREST)) {
-//			generation.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, IncubationPlacedFeatures.NEST_CHICKEN);
-//		}
-//
-//		if (ModList.get().isLoaded(IncubationConstants.ENVIRONMENTAL) && !DataUtil.matchesKeys(name, Biomes.FROZEN_RIVER) && (category.equals(BiomeCategory.SWAMP) || category.equals(BiomeCategory.RIVER))) {
-//			generation.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, IncubationPlacedFeatures.NEST_DUCK);
-//		}
-//
-//		if (ModList.get().isLoaded(IncubationConstants.AUTUMNITY) && name.toString().contains("maple") || name.toString().contains("pumpkin_fields")) {
-//			generation.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, IncubationPlacedFeatures.NEST_TURKEY);
-//		}
-//	}
 }

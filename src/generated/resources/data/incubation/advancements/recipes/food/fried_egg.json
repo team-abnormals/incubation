@@ -28,5 +28,6 @@
     "recipes": [
       "incubation:fried_egg"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

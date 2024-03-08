@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "key": {
     "#": {
       "item": "minecraft:wheat"
@@ -11,5 +12,6 @@
   ],
   "result": {
     "item": "incubation:hay_nest"
-  }
+  },
+  "show_notification": true
 }

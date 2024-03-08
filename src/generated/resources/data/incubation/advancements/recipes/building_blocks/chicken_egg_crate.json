@@ -30,5 +30,6 @@
     "recipes": [
       "incubation:chicken_egg_crate"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -42,7 +42,7 @@ public class BirdNestFeature extends Feature<NestConfiguration> {
 					double posZ = (double) pos.getZ() + (random.nextDouble() - random.nextDouble()) * 4.5D;
 					if (level.noCollision(entityType.getAABB(posX, posY, posZ))) {
 						Mob entity = (Mob) entityType.create(level.getLevel());
-						if (entity != null && SpawnPlacements.checkSpawnRules(entityType, level, MobSpawnType.STRUCTURE, new BlockPos(posX, posY, posZ), level.getRandom())) {
+						if (entity != null && SpawnPlacements.checkSpawnRules(entityType, level, MobSpawnType.STRUCTURE, BlockPos.containing(posX, posY, posZ), level.getRandom())) {
 							entity.moveTo(posX, posY, posZ, random.nextFloat() * 360.0F, 0.0F);
 							entity.finalizeSpawn(level, level.getCurrentDifficultyAt(entity.blockPosition()), MobSpawnType.STRUCTURE, null, null);
 							entity.setBaby(random.nextInt(3) == 0);

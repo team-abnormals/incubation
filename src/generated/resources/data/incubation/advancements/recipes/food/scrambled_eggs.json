@@ -41,5 +41,6 @@
     "recipes": [
       "incubation:scrambled_eggs"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

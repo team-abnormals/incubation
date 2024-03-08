@@ -30,5 +30,6 @@
     "recipes": [
       "incubation:hay_nest"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

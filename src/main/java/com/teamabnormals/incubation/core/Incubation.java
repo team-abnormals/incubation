@@ -15,8 +15,9 @@ import com.teamabnormals.incubation.core.other.IncubationCompat;
 import com.teamabnormals.incubation.core.registry.IncubationFeatures;
 import com.teamabnormals.incubation.core.registry.IncubationFeatures.IncubationConfiguredFeatures;
 import com.teamabnormals.incubation.core.registry.IncubationFeatures.IncubationPlacedFeatures;
-import com.teamabnormals.incubation.core.registry.IncubationStructures;
+import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
@@ -24,6 +25,8 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+
+import java.util.concurrent.CompletableFuture;
 
 @Mod(Incubation.MOD_ID)
 public class Incubation {
@@ -46,27 +49,28 @@ public class Incubation {
 	private void commonSetup(FMLCommonSetupEvent event) {
 		event.enqueueWork(() -> {
 			IncubationCompat.registerCompat();
-			IncubationStructures.setupVillagerHouses();
 		});
 	}
 
 	private void dataSetup(GatherDataEvent event) {
 		DataGenerator generator = event.getGenerator();
-		ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
+		PackOutput output = generator.getPackOutput();
+		CompletableFuture<Provider> provider = event.getLookupProvider();
+		ExistingFileHelper helper = event.getExistingFileHelper();
 
 		boolean includeServer = event.includeServer();
-		IncubationBlockTagsProvider blockTags = new IncubationBlockTagsProvider(generator, existingFileHelper);
+		IncubationBlockTagsProvider blockTags = new IncubationBlockTagsProvider(output, provider, helper);
 		generator.addProvider(includeServer, blockTags);
-		generator.addProvider(includeServer, new IncubationItemTagsProvider(generator, blockTags, existingFileHelper));
-		generator.addProvider(includeServer, new IncubationBiomeTagsProvider(generator, existingFileHelper));
-		generator.addProvider(includeServer, new IncubationRecipeProvider(generator));
-		generator.addProvider(includeServer, new IncubationLootTableProvider(generator));
-		generator.addProvider(includeServer, new IncubationAdvancementModifierProvider(generator));
-		generator.addProvider(includeServer, IncubationBiomeModifierProvider.create(generator, existingFileHelper));
+		generator.addProvider(includeServer, new IncubationItemTagsProvider(output, provider, blockTags.contentsGetter(), helper));
+		generator.addProvider(includeServer, new IncubationBiomeTagsProvider(output, provider, helper));
+		generator.addProvider(includeServer, new IncubationRecipeProvider(output));
+		generator.addProvider(includeServer, new IncubationLootTableProvider(output));
+		generator.addProvider(includeServer, new IncubationAdvancementModifierProvider(output, provider));
+//		generator.addProvider(includeServer, IncubationBiomeModifierProvider.create(generator, helper));
 
 		boolean includeClient = event.includeClient();
-		generator.addProvider(includeClient, new IncubationItemModelProvider(generator, existingFileHelper));
-		generator.addProvider(includeClient, new IncubationBlockStateProvider(generator, existingFileHelper));
-		generator.addProvider(includeClient, new IncubationLanguageProvider(generator));
+		generator.addProvider(includeClient, new IncubationItemModelProvider(output, helper));
+		generator.addProvider(includeClient, new IncubationBlockStateProvider(output, helper));
+		generator.addProvider(includeClient, new IncubationLanguageProvider(output));
 	}
 }

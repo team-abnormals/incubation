@@ -8,9 +8,11 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.registries.RegistryObject;
 
+import java.util.Set;
+
 @EventBusSubscriber(modid = Incubation.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
 public class IncubationBlockEntityTypes {
 	public static final BlockEntitySubRegistryHelper HELPER = Incubation.REGISTRY_HELPER.getBlockEntitySubHelper();
 
-	public static final RegistryObject<BlockEntityType<BirdNestBlockEntity>> BIRD_NEST = HELPER.createBlockEntity("bird_nest", BirdNestBlockEntity::new, () -> BlockEntitySubRegistryHelper.collectBlocks(BirdNestBlock.class));
+	public static final RegistryObject<BlockEntityType<BirdNestBlockEntity>> BIRD_NEST = HELPER.createBlockEntity("bird_nest", BirdNestBlockEntity::new, () -> Set.of(BlockEntitySubRegistryHelper.collectBlocks(BirdNestBlock.class)));
 }

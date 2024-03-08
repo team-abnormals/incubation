@@ -3,7 +3,7 @@ package com.teamabnormals.incubation.core.data.client;
 import com.teamabnormals.incubation.common.block.BirdNestBlock;
 import com.teamabnormals.incubation.core.Incubation;
 import com.teamabnormals.incubation.core.registry.IncubationBlocks;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
@@ -16,8 +16,8 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class IncubationBlockStateProvider extends BlockStateProvider {
 
-	public IncubationBlockStateProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
-		super(generator, Incubation.MOD_ID, existingFileHelper);
+	public IncubationBlockStateProvider(PackOutput output, ExistingFileHelper helper) {
+		super(output, Incubation.MOD_ID, helper);
 	}
 
 	@Override

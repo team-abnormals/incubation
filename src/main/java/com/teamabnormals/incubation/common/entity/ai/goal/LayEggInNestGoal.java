@@ -46,16 +46,16 @@ public class LayEggInNestGoal extends MoveToBlockGoal {
 			this.eggCounter = Math.max(0, this.eggCounter - 1);
 			if (this.eggCounter <= 0) {
 				BlockPos blockpos = this.blockPos.above();
-				BlockState blockstate = this.bird.level.getBlockState(blockpos);
+				BlockState blockstate = this.bird.level().getBlockState(blockpos);
 				Block block = blockstate.getBlock();
 
 				if (block instanceof EmptyNestBlock) {
-					this.bird.level.setBlock(blockpos, ((EmptyNestBlock) block).getNest(this.eggLayer.getEggItem()).defaultBlockState(), 3);
+					this.bird.level().setBlock(blockpos, ((EmptyNestBlock) block).getNest(this.eggLayer.getEggItem()).defaultBlockState(), 3);
 					this.resetBird();
 				} else if (block instanceof BirdNestBlock && ((BirdNestBlock) block).getEgg() == this.eggLayer.getEggItem()) {
 					int i = blockstate.getValue(BirdNestBlock.EGGS);
 					if (i < 6) {
-						this.bird.level.setBlock(blockpos, blockstate.setValue(BirdNestBlock.EGGS, i + 1), 3);
+						this.bird.level().setBlock(blockpos, blockstate.setValue(BirdNestBlock.EGGS, i + 1), 3);
 						this.resetBird();
 					}
 				}

@@ -69,7 +69,7 @@ public class EmptyNestBlock extends Block {
 
 	@Override
 	public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
-		return worldIn.getBlockState(pos.below()).getMaterial().isSolid();
+		return worldIn.getBlockState(pos.below()).isSolid();
 	}
 
 	public Block getNest(Item item) {

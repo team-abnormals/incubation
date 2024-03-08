@@ -7,7 +7,6 @@ import com.teamabnormals.incubation.core.data.client.IncubationLanguageProvider;
 import com.teamabnormals.incubation.core.data.server.IncubationLootTableProvider;
 import com.teamabnormals.incubation.core.data.server.IncubationRecipeProvider;
 import com.teamabnormals.incubation.core.data.server.modifiers.IncubationAdvancementModifierProvider;
-import com.teamabnormals.incubation.core.data.server.modifiers.IncubationBiomeModifierProvider;
 import com.teamabnormals.incubation.core.data.server.tags.IncubationBiomeTagsProvider;
 import com.teamabnormals.incubation.core.data.server.tags.IncubationBlockTagsProvider;
 import com.teamabnormals.incubation.core.data.server.tags.IncubationItemTagsProvider;
@@ -15,13 +14,16 @@ import com.teamabnormals.incubation.core.other.IncubationCompat;
 import com.teamabnormals.incubation.core.registry.IncubationFeatures;
 import com.teamabnormals.incubation.core.registry.IncubationFeatures.IncubationConfiguredFeatures;
 import com.teamabnormals.incubation.core.registry.IncubationFeatures.IncubationPlacedFeatures;
+import com.teamabnormals.incubation.core.registry.IncubationItems;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -44,6 +46,10 @@ public class Incubation {
 
 		bus.addListener(this::commonSetup);
 		bus.addListener(this::dataSetup);
+
+		DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
+			IncubationItems.setupTabEditors();
+		});
 	}
 
 	private void commonSetup(FMLCommonSetupEvent event) {

@@ -1,0 +1,15 @@
+{
+  "block.incubation.chicken_egg_crate": "ニワトリの卵入り木箱",
+  "block.incubation.hay_chicken_nest": "干草のニワトリの巣",
+  "block.incubation.hay_duck_nest": "干草のカモの巣",
+  "block.incubation.hay_nest": "干草の巣",
+  "block.incubation.hay_turkey_nest": "干草の七面鳥の巣",
+  "block.incubation.turtle_egg_crate": "カメの卵入り木箱",
+  "block.incubation.twig_chicken_nest": "小枝のニワトリの巣",
+  "block.incubation.twig_duck_nest": "小枝のカモの巣",
+  "block.incubation.twig_nest": "小枝の巣",
+  "block.incubation.twig_turkey_nest": "小枝の七面鳥の巣",
+  "item.incubation.chicken_egg": "ニワトリの卵",
+  "item.incubation.fried_egg": "目玉焼き",
+  "item.incubation.scrambled_eggs": "スクランブルエッグ"
+}

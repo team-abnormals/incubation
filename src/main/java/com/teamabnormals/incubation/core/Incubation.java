@@ -1,6 +1,8 @@
 package com.teamabnormals.incubation.core;
 
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
+import com.teamabnormals.gallery.core.data.client.GalleryAssetsRemolderProvider;
+import com.teamabnormals.gallery.core.data.client.GalleryItemModelProvider;
 import com.teamabnormals.incubation.core.data.client.IncubationBlockStateProvider;
 import com.teamabnormals.incubation.core.data.client.IncubationItemModelProvider;
 import com.teamabnormals.incubation.core.data.client.IncubationLanguageProvider;
@@ -12,8 +14,10 @@ import com.teamabnormals.incubation.core.data.server.tags.IncubationBiomeTagsPro
 import com.teamabnormals.incubation.core.data.server.tags.IncubationBlockTagsProvider;
 import com.teamabnormals.incubation.core.data.server.tags.IncubationItemTagsProvider;
 import com.teamabnormals.incubation.core.other.IncubationCompat;
+import com.teamabnormals.incubation.core.other.tags.IncubationPaintingVariantTagsProvider;
 import com.teamabnormals.incubation.core.registry.IncubationFeatures;
 import com.teamabnormals.incubation.core.registry.IncubationItems;
+import com.teamabnormals.incubation.core.registry.IncubationPaintingVariants;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -40,6 +44,7 @@ public class Incubation {
 
 		REGISTRY_HELPER.register(bus);
 		IncubationFeatures.FEATURES.register(bus);
+		IncubationPaintingVariants.PAINTING_VARIANTS.register(bus);
 
 		bus.addListener(this::commonSetup);
 		bus.addListener(this::dataSetup);
@@ -61,19 +66,23 @@ public class Incubation {
 		CompletableFuture<Provider> provider = event.getLookupProvider();
 		ExistingFileHelper helper = event.getExistingFileHelper();
 
-		boolean includeServer = event.includeServer();
+		boolean server = event.includeServer();
 		IncubationBlockTagsProvider blockTags = new IncubationBlockTagsProvider(output, provider, helper);
-		generator.addProvider(includeServer, blockTags);
-		generator.addProvider(includeServer, new IncubationItemTagsProvider(output, provider, blockTags.contentsGetter(), helper));
-		generator.addProvider(includeServer, new IncubationBiomeTagsProvider(output, provider, helper));
-		generator.addProvider(includeServer, new IncubationRecipeProvider(output));
-		generator.addProvider(includeServer, new IncubationLootTableProvider(output));
-		generator.addProvider(includeServer, new IncubationAdvancementModifierProvider(output, provider));
-		generator.addProvider(includeServer, new IncubationDatapackBuiltinEntriesProvider(output, provider));
+		generator.addProvider(server, blockTags);
+		generator.addProvider(server, new IncubationItemTagsProvider(output, provider, blockTags.contentsGetter(), helper));
+		generator.addProvider(server, new IncubationBiomeTagsProvider(output, provider, helper));
+		generator.addProvider(server, new IncubationPaintingVariantTagsProvider(output, provider, helper));
+		generator.addProvider(server, new IncubationRecipeProvider(output));
+		generator.addProvider(server, new IncubationLootTableProvider(output));
+		generator.addProvider(server, new IncubationAdvancementModifierProvider(output, provider));
+		generator.addProvider(server, new IncubationDatapackBuiltinEntriesProvider(output, provider));
 
-		boolean includeClient = event.includeClient();
-		generator.addProvider(includeClient, new IncubationItemModelProvider(output, helper));
-		generator.addProvider(includeClient, new IncubationBlockStateProvider(output, helper));
-		generator.addProvider(includeClient, new IncubationLanguageProvider(output));
+		boolean client = event.includeClient();
+		generator.addProvider(client, new IncubationItemModelProvider(output, helper));
+		generator.addProvider(client, new IncubationBlockStateProvider(output, helper));
+		generator.addProvider(client, new IncubationLanguageProvider(output));
+
+		generator.addProvider(client, new GalleryItemModelProvider(MOD_ID, output, helper));
+		generator.addProvider(client, new GalleryAssetsRemolderProvider(MOD_ID, output, provider));
 	}
 }

@@ -1,0 +1,26 @@
+{
+  "molding": "json",
+  "remolder": [
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "incubation:item/painting/egg",
+        "predicate": {
+          "incubation:egg": 1.0
+        }
+      }
+    },
+    {
+      "type": "add",
+      "target": "overrides[]",
+      "value": {
+        "model": "incubation:item/painting/culprit",
+        "predicate": {
+          "incubation:culprit": 1.0
+        }
+      }
+    }
+  ],
+  "selector": "minecraft:models/item/painting"
+}

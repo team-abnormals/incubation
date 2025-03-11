@@ -19,8 +19,9 @@ public class IncubationLanguageProvider extends BlueprintLanguageProvider {
 
 	@Override
 	public void addTranslations() {
+		this.add(CHICKEN_EGG_CRATE.get(), "Crate of Chicken Eggs");
+		this.add(TURTLE_EGG_CRATE.get(), "Crate of Turtle Eggs");
 		this.add(
-				CHICKEN_EGG_CRATE.get(), TURTLE_EGG_CRATE.get(),
 				HAY_NEST.get(), HAY_CHICKEN_NEST.get(), HAY_DUCK_NEST.get(), HAY_TURKEY_NEST.get(),
 				TWIG_NEST.get(), TWIG_CHICKEN_NEST.get(), TWIG_DUCK_NEST.get(), TWIG_TURKEY_NEST.get()
 		);

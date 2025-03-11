@@ -7,9 +7,7 @@
           "incubation:fried_egg": {
             "conditions": {
               "item": {
-                "items": [
-                  "incubation:fried_egg"
-                ]
+                "items": "incubation:fried_egg"
               }
             },
             "trigger": "minecraft:consume_item"
@@ -17,14 +15,13 @@
           "incubation:scrambled_eggs": {
             "conditions": {
               "item": {
-                "items": [
-                  "incubation:scrambled_eggs"
-                ]
+                "items": "incubation:scrambled_eggs"
               }
             },
             "trigger": "minecraft:consume_item"
           }
         },
+        "indexed_requirements": [],
         "requirements": [
           [
             "incubation:fried_egg"

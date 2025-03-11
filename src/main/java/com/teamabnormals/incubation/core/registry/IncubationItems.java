@@ -8,19 +8,17 @@ import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredItem;
 
 import static net.minecraft.world.item.CreativeModeTabs.FOOD_AND_DRINKS;
 import static net.minecraft.world.item.CreativeModeTabs.NATURAL_BLOCKS;
 import static net.minecraft.world.item.crafting.Ingredient.of;
 
-@EventBusSubscriber(modid = Incubation.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
 public class IncubationItems {
 	public static final ItemSubRegistryHelper HELPER = Incubation.REGISTRY_HELPER.getItemSubHelper();
 
-	public static final RegistryObject<Item> FRIED_EGG = HELPER.createItem("fried_egg", () -> new Item(new Item.Properties().food(EnvironmentalFoods.FRIED_EGG)));
-	public static final RegistryObject<Item> SCRAMBLED_EGGS = HELPER.createItem("scrambled_eggs", () -> new ScrambledEggsItem(new Item.Properties().stacksTo(1).food(EnvironmentalFoods.SCRAMBLED_EGGS)));
+	public static final DeferredItem<Item> FRIED_EGG = HELPER.createItem("fried_egg", () -> new Item(new Item.Properties().food(EnvironmentalFoods.FRIED_EGG)));
+	public static final DeferredItem<Item> SCRAMBLED_EGGS = HELPER.createItem("scrambled_eggs", () -> new ScrambledEggsItem(new Item.Properties().stacksTo(1).food(EnvironmentalFoods.SCRAMBLED_EGGS)));
 
 	public static void setupTabEditors() {
 		CreativeModeTabContentsPopulator.mod(Incubation.MOD_ID)
@@ -33,7 +31,7 @@ public class IncubationItems {
 	}
 
 	public static final class EnvironmentalFoods {
-		public static final FoodProperties FRIED_EGG = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.6F).build();
-		public static final FoodProperties SCRAMBLED_EGGS = (new FoodProperties.Builder()).nutrition(6).saturationMod(0.6F).build();
+		public static final FoodProperties FRIED_EGG = (new FoodProperties.Builder()).nutrition(3).saturationModifier(0.6F).build();
+		public static final FoodProperties SCRAMBLED_EGGS = (new FoodProperties.Builder()).nutrition(6).saturationModifier(0.6F).usingConvertsTo(Items.BOWL).build();
 	}
 }

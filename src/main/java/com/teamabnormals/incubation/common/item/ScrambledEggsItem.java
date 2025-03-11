@@ -3,12 +3,12 @@ package com.teamabnormals.incubation.common.item;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.BowlFoodItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
-public class ScrambledEggsItem extends BowlFoodItem {
+public class ScrambledEggsItem extends Item {
+
 	public ScrambledEggsItem(Item.Properties properties) {
 		super(properties);
 	}

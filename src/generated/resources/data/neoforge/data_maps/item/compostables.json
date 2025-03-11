@@ -1,0 +1,10 @@
+{
+  "values": {
+    "incubation:hay_nest": {
+      "chance": 0.65
+    },
+    "incubation:twig_nest": {
+      "chance": 0.65
+    }
+  }
+}

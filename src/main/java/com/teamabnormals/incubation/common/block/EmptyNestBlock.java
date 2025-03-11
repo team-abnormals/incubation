@@ -4,7 +4,7 @@ import com.google.common.collect.Maps;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -46,25 +46,21 @@ public class EmptyNestBlock extends Block {
 	}
 
 	@Override
-	public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+	public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
 		if (player.mayBuild()) {
-			ItemStack itemstack = player.getItemInHand(handIn);
-			Item item = itemstack.getItem();
-			Block nest = this.getNest(item);
+			Block nest = this.getNest(stack.getItem());
 
 			if (nest != null) {
 				if (!player.getAbilities().instabuild && !worldIn.isClientSide) {
-					itemstack.shrink(1);
+					stack.shrink(1);
 				}
 				worldIn.setBlock(pos, nest.defaultBlockState(), 3);
 
-				return InteractionResult.sidedSuccess(worldIn.isClientSide);
+				return ItemInteractionResult.sidedSuccess(worldIn.isClientSide);
 			}
-
-			return InteractionResult.PASS;
-		} else {
-			return super.use(state, worldIn, pos, player, handIn, hit);
 		}
+
+		return super.useItemOn(stack, state, worldIn, pos, player, handIn, hit);
 	}
 
 	@Override

@@ -3,11 +3,11 @@ package com.teamabnormals.incubation.core.data.client;
 import com.teamabnormals.blueprint.core.data.client.BlueprintLanguageProvider;
 import com.teamabnormals.incubation.core.Incubation;
 import com.teamabnormals.incubation.core.registry.IncubationItems;
-import com.teamabnormals.incubation.core.registry.IncubationPaintingVariants;
+import com.teamabnormals.incubation.core.registry.datapack.IncubationPaintingVariants;
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.decoration.PaintingVariant;
-import net.minecraftforge.registries.RegistryObject;
 
 import static com.teamabnormals.incubation.core.registry.IncubationBlocks.*;
 
@@ -31,8 +31,8 @@ public class IncubationLanguageProvider extends BlueprintLanguageProvider {
 		this.add(IncubationPaintingVariants.CULPRIT, "Culprit", "five");
 	}
 
-	private void add(RegistryObject<PaintingVariant> variant, String title, String author) {
-		ResourceLocation name = variant.getId();
+	private void add(ResourceKey<PaintingVariant> variant, String title, String author) {
+		ResourceLocation name = variant.location();
 		String key = "painting." + name.getNamespace() + "." + name.getPath() + ".";
 		this.add(key + "title", title);
 		this.add(key + "author", author);

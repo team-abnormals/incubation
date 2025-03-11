@@ -1,12 +1,14 @@
 package com.teamabnormals.incubation.common.block;
 
+import com.mojang.serialization.MapCodec;
 import com.teamabnormals.incubation.common.block.entity.BirdNestBlockEntity;
 import com.teamabnormals.incubation.core.registry.IncubationBlockEntityTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -26,9 +28,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
 import java.util.function.Supplier;
@@ -49,7 +51,7 @@ public class BirdNestBlock extends BaseEntityBlock {
 	}
 
 	public BirdNestBlock(ResourceLocation eggIn, EmptyNestBlock emptyNestIn, Properties properties) {
-		this(() -> ForgeRegistries.ITEMS.getValue(eggIn), emptyNestIn, properties);
+		this(() -> BuiltInRegistries.ITEM.get(eggIn), emptyNestIn, properties);
 	}
 
 	@Override
@@ -63,27 +65,26 @@ public class BirdNestBlock extends BaseEntityBlock {
 	}
 
 	@Override
-	public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+	public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
 		if (player.mayBuild()) {
-			ItemStack itemstack = player.getItemInHand(handIn);
-			if (this.egg.get() != Items.AIR && itemstack.getItem() == this.egg.get()) {
+			if (this.egg.get() != Items.AIR && stack.is(this.egg.get())) {
 				int i = state.getValue(EGGS);
 				if (i < 6) {
 					if (!player.getAbilities().instabuild) {
-						itemstack.shrink(1);
+						stack.shrink(1);
 					}
 					worldIn.setBlock(pos, state.setValue(EGGS, i + 1), 3);
-					return InteractionResult.sidedSuccess(worldIn.isClientSide);
+					return ItemInteractionResult.sidedSuccess(worldIn.isClientSide);
 				} else {
-					return InteractionResult.CONSUME;
+					return ItemInteractionResult.CONSUME;
 				}
 			} else {
 				popResource(worldIn, pos, new ItemStack(this.egg.get()));
 				this.removeEgg(worldIn, pos, state);
-				return InteractionResult.sidedSuccess(worldIn.isClientSide);
+				return ItemInteractionResult.sidedSuccess(worldIn.isClientSide);
 			}
 		} else {
-			return super.use(state, worldIn, pos, player, handIn, hit);
+			return super.useItemOn(stack, state, worldIn, pos, player, handIn, hit);
 		}
 	}
 
@@ -97,7 +98,7 @@ public class BirdNestBlock extends BaseEntityBlock {
 	}
 
 	@Override
-	public ItemStack getCloneItemStack(BlockGetter worldIn, BlockPos pos, BlockState state) {
+	public ItemStack getCloneItemStack(BlockState state, HitResult target, LevelReader level, BlockPos pos, Player player) {
 		return new ItemStack(this.getEgg());
 	}
 
@@ -107,10 +108,10 @@ public class BirdNestBlock extends BaseEntityBlock {
 	}
 
 	@Override
-	public void playerWillDestroy(Level worldIn, BlockPos pos, BlockState state, Player player) {
-		super.playerWillDestroy(worldIn, pos, state, player);
-		if (!worldIn.isClientSide && !player.isCreative() && this.getEgg() != null && state.getValue(EGGS) > 0)
+	public BlockState playerWillDestroy(Level worldIn, BlockPos pos, BlockState state, Player player) {
+		if (!worldIn.isClientSide() && !player.isCreative() && this.getEgg() != null && state.getValue(EGGS) > 0)
 			popResource(worldIn, pos, new ItemStack(this.getEgg(), state.getValue(EGGS)));
+		return super.playerWillDestroy(worldIn, pos, state, player);
 	}
 
 	@Override
@@ -122,6 +123,11 @@ public class BirdNestBlock extends BaseEntityBlock {
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
 		return level.isClientSide ? null : createTickerHelper(type, IncubationBlockEntityTypes.BIRD_NEST.get(), BirdNestBlockEntity::serverTick);
+	}
+
+	@Override
+	protected MapCodec<? extends BaseEntityBlock> codec() {
+		return null;
 	}
 
 	@Override

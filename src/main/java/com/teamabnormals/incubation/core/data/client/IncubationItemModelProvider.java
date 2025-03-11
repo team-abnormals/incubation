@@ -4,12 +4,12 @@ import com.teamabnormals.blueprint.core.data.client.BlueprintItemModelProvider;
 import com.teamabnormals.incubation.core.Incubation;
 import com.teamabnormals.incubation.core.registry.IncubationItems;
 import net.minecraft.data.PackOutput;
-import net.minecraftforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 public class IncubationItemModelProvider extends BlueprintItemModelProvider {
 
-	public IncubationItemModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
-		super(output, Incubation.MOD_ID, existingFileHelper);
+	public IncubationItemModelProvider(PackOutput output, ExistingFileHelper helper) {
+		super(output, Incubation.MOD_ID, helper);
 	}
 
 	@Override

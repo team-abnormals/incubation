@@ -8,14 +8,8 @@ import net.minecraft.world.item.Items;
 public class IncubationCompat {
 
 	public static void registerCompat() {
-		registerCompostables();
 		registerFlammables();
 		DataUtil.changeItemLocalization(Items.EGG, Incubation.MOD_ID, "chicken_egg");
-	}
-
-	private static void registerCompostables() {
-		DataUtil.registerCompostable(IncubationBlocks.TWIG_NEST.get(), 0.65F);
-		DataUtil.registerCompostable(IncubationBlocks.HAY_NEST.get(), 0.65F);
 	}
 
 	private static void registerFlammables() {

@@ -8,8 +8,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.HopperBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.items.ItemHandlerHelper;
-import net.minecraftforge.items.VanillaHopperItemHandler;
+import net.neoforged.neoforge.items.ItemHandlerHelper;
+import net.neoforged.neoforge.items.VanillaHopperItemHandler;
 
 import javax.annotation.Nonnull;
 
@@ -25,8 +25,8 @@ public class BirdNestBlockEntity extends BlockEntity {
 		BirdNestBlock block = (BirdNestBlock) state.getBlock();
 		if (level.getBlockState(blockpos).hasBlockEntity()) {
 			BlockEntity blockEntityBelow = level.getBlockEntity(blockpos);
-			if (blockEntityBelow instanceof HopperBlockEntity) {
-				if (!((HopperBlockEntity) blockEntityBelow).isOnCooldown() && insertEggToHopper(blockEntityBelow, new ItemStack(block.getEgg()))) {
+			if (blockEntityBelow instanceof HopperBlockEntity hopper) {
+				if (!hopper.isOnCooldown() && insertEggToHopper(blockEntityBelow, new ItemStack(block.getEgg()))) {
 					if (i > 1)
 						level.setBlock(pos, state.setValue(BirdNestBlock.EGGS, i - 1), 2);
 					else

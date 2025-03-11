@@ -20,7 +20,7 @@ public class LayEggInNestGoal extends MoveToBlockGoal {
 	public LayEggInNestGoal(Animal birdIn, double speedIn) {
 		super(birdIn, speedIn, 16);
 		this.bird = birdIn;
-		this.eggLayer = (EggLayer) (Animal) birdIn;
+		this.eggLayer = (EggLayer) birdIn;
 	}
 
 	public boolean canUse() {

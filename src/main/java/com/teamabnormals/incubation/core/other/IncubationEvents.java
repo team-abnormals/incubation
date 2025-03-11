@@ -5,9 +5,9 @@ import com.teamabnormals.incubation.common.entity.ai.goal.LayEggInNestGoal;
 import com.teamabnormals.incubation.core.Incubation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.animal.Animal;
-import net.minecraftforge.event.entity.EntityJoinLevelEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 
 @EventBusSubscriber(modid = Incubation.MOD_ID)
 public class IncubationEvents {

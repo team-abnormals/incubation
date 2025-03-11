@@ -1,0 +1,39 @@
+modLoader = "javafml"
+loaderVersion = "[1,)"
+issueTrackerURL = "https://github.com/team-abnormals/incubation/issues"
+license = "https://github.com/team-abnormals/incubation/blob/main/LICENSE.txt"
+
+[[mods]]
+    modId = "incubation"
+    version = "${mod_version}"
+    logoFile = "logo.png"
+    itemIcon = "incubation:hay_nest"
+    configBackground = "minecraft:textures/block/hay_block_side.png"
+    authors = "Team Abnormals"
+    credits = "bageldotjpg, Markus1002, five, Adeline"
+    displayURL = "https://www.teamabnormals.com/mods/incubation"
+    displayName = "Incubation"
+    description = '''
+    Lays down a dozen of egg-related features, including fried eggs, scrambled eggs, bird nests, and more!
+    '''
+
+[[dependencies.incubation]]
+    modId = "minecraft"
+    type = "required"
+    versionRange = "[${mc_version}]"
+    ordering = "AFTER"
+    side = "BOTH"
+
+[[dependencies.incubation]]
+    modId = "neoforge"
+    type = "required"
+    versionRange = "[${neoforge},)"
+    ordering = "AFTER"
+    side = "BOTH"
+
+[[dependencies.incubation]]
+    modId = "blueprint"
+    type = "required"
+    versionRange = "[${blueprint},)"
+    ordering = "AFTER"
+    side = "BOTH"

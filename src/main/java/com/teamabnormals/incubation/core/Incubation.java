@@ -1,6 +1,7 @@
 package com.teamabnormals.incubation.core;
 
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
+import com.teamabnormals.gallery.core.data.client.GalleryItemModelProvider;
 import com.teamabnormals.incubation.core.data.client.IncubationBlockStateProvider;
 import com.teamabnormals.incubation.core.data.client.IncubationItemModelProvider;
 import com.teamabnormals.incubation.core.data.client.IncubationLanguageProvider;
@@ -80,8 +81,7 @@ public class Incubation {
 		generator.addProvider(client, new IncubationBlockStateProvider(output, helper));
 		generator.addProvider(client, new IncubationLanguageProvider(output));
 
-//		generator.addProvider(client, new GalleryItemModelProvider(MOD_ID, output, helper));
-//		generator.addProvider(client, new GalleryAssetsRemolderProvider(MOD_ID, output, provider));
+		generator.addProvider(client, new GalleryItemModelProvider(MOD_ID, output, helper, provider));
 	}
 
 	public static ResourceLocation location(String path) {

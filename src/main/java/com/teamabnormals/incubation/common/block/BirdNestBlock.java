@@ -116,7 +116,7 @@ public class BirdNestBlock extends BaseEntityBlock {
 
 	@Override
 	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-		return new BirdNestBlockEntity(pos, state);
+		return IncubationBlockEntityTypes.BIRD_NEST.get().create(pos, state);
 	}
 
 	@Nullable

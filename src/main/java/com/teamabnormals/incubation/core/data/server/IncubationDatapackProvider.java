@@ -15,7 +15,7 @@ import net.neoforged.neoforge.registries.NeoForgeRegistries.Keys;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
-public class IncubationDatapackBuiltinEntriesProvider extends DatapackBuiltinEntriesProvider {
+public class IncubationDatapackProvider extends DatapackBuiltinEntriesProvider {
 
 	public static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
 			.add(Registries.PAINTING_VARIANT, IncubationPaintingVariants::bootstrap)
@@ -23,7 +23,7 @@ public class IncubationDatapackBuiltinEntriesProvider extends DatapackBuiltinEnt
 			.add(Registries.PLACED_FEATURE, IncubationPlacedFeatures::bootstrap)
 			.add(Keys.BIOME_MODIFIERS, IncubationBiomeModifierProvider::bootstrap);
 
-	public IncubationDatapackBuiltinEntriesProvider(PackOutput output, CompletableFuture<Provider> provider) {
+	public IncubationDatapackProvider(PackOutput output, CompletableFuture<Provider> provider) {
 		super(output, provider, BUILDER, Set.of(Incubation.MOD_ID));
 	}
 }

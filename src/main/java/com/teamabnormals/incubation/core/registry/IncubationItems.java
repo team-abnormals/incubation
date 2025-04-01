@@ -15,10 +15,10 @@ import static net.minecraft.world.item.CreativeModeTabs.NATURAL_BLOCKS;
 import static net.minecraft.world.item.crafting.Ingredient.of;
 
 public class IncubationItems {
-	public static final ItemSubRegistryHelper HELPER = Incubation.REGISTRY_HELPER.getItemSubHelper();
+	public static final ItemSubRegistryHelper ITEMS = Incubation.REGISTRY_HELPER.getItemSubHelper();
 
-	public static final DeferredItem<Item> FRIED_EGG = HELPER.createItem("fried_egg", () -> new Item(new Item.Properties().food(EnvironmentalFoods.FRIED_EGG)));
-	public static final DeferredItem<Item> SCRAMBLED_EGGS = HELPER.createItem("scrambled_eggs", () -> new ScrambledEggsItem(new Item.Properties().stacksTo(1).food(EnvironmentalFoods.SCRAMBLED_EGGS)));
+	public static final DeferredItem<Item> FRIED_EGG = ITEMS.createItem("fried_egg", () -> new Item(new Item.Properties().food(EnvironmentalFoods.FRIED_EGG)));
+	public static final DeferredItem<Item> SCRAMBLED_EGGS = ITEMS.createItem("scrambled_eggs", () -> new ScrambledEggsItem(new Item.Properties().stacksTo(1).food(EnvironmentalFoods.SCRAMBLED_EGGS)));
 
 	public static void setupTabEditors() {
 		CreativeModeTabContentsPopulator.mod(Incubation.MOD_ID)

@@ -6,7 +6,7 @@ import com.teamabnormals.incubation.core.data.client.IncubationBlockStateProvide
 import com.teamabnormals.incubation.core.data.client.IncubationItemModelProvider;
 import com.teamabnormals.incubation.core.data.client.IncubationLanguageProvider;
 import com.teamabnormals.incubation.core.data.server.IncubationDataMapProvider;
-import com.teamabnormals.incubation.core.data.server.IncubationDatapackBuiltinEntriesProvider;
+import com.teamabnormals.incubation.core.data.server.IncubationDatapackProvider;
 import com.teamabnormals.incubation.core.data.server.IncubationLootTableProvider;
 import com.teamabnormals.incubation.core.data.server.IncubationRecipeProvider;
 import com.teamabnormals.incubation.core.data.server.modifiers.IncubationAdvancementModifierProvider;
@@ -40,6 +40,7 @@ public class Incubation {
 
 	public Incubation(IEventBus bus) {
 		IncubationBlocks.BLOCKS.register(bus);
+		IncubationItems.ITEMS.register(bus);
 		IncubationBlockEntityTypes.BLOCK_ENTITY_TYPES.register(bus);
 		IncubationFeatures.FEATURES.register(bus);
 
@@ -64,7 +65,7 @@ public class Incubation {
 		ExistingFileHelper helper = event.getExistingFileHelper();
 
 		boolean server = event.includeServer();
-		IncubationDatapackBuiltinEntriesProvider datapack = new IncubationDatapackBuiltinEntriesProvider(output, provider);
+		IncubationDatapackProvider datapack = new IncubationDatapackProvider(output, provider);
 		generator.addProvider(server, datapack);
 		provider = datapack.getRegistryProvider();
 

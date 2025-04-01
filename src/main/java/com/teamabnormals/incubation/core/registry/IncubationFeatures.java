@@ -40,7 +40,6 @@ public class IncubationFeatures {
 		public static void register(BootstrapContext<ConfiguredFeature<?, ?>> context, ResourceKey<ConfiguredFeature<?, ?>> key, Supplier<? extends ConfiguredFeature<?, ?>> configuredFeature) {
 			context.register(key, configuredFeature.get());
 		}
-
 	}
 
 	public static final class IncubationPlacedFeatures {

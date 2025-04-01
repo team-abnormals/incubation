@@ -15,6 +15,8 @@ import com.teamabnormals.incubation.core.data.server.tags.IncubationBlockTagsPro
 import com.teamabnormals.incubation.core.data.server.tags.IncubationItemTagsProvider;
 import com.teamabnormals.incubation.core.other.IncubationCompat;
 import com.teamabnormals.incubation.core.other.tags.IncubationPaintingVariantTagsProvider;
+import com.teamabnormals.incubation.core.registry.IncubationBlockEntityTypes;
+import com.teamabnormals.incubation.core.registry.IncubationBlocks;
 import com.teamabnormals.incubation.core.registry.IncubationFeatures;
 import com.teamabnormals.incubation.core.registry.IncubationItems;
 import net.minecraft.core.HolderLookup.Provider;
@@ -23,7 +25,6 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.fml.loading.FMLEnvironment;
@@ -37,8 +38,9 @@ public class Incubation {
 	public static final String MOD_ID = "incubation";
 	public static final RegistryHelper REGISTRY_HELPER = new RegistryHelper(MOD_ID);
 
-	public Incubation(IEventBus bus, ModContainer container) {
-		REGISTRY_HELPER.register(bus);
+	public Incubation(IEventBus bus) {
+		IncubationBlocks.BLOCKS.register(bus);
+		IncubationBlockEntityTypes.BLOCK_ENTITY_TYPES.register(bus);
 		IncubationFeatures.FEATURES.register(bus);
 
 		bus.addListener(this::commonSetup);

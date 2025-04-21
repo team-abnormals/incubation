@@ -7,7 +7,7 @@ import net.minecraft.world.item.Items;
 
 public class IncubationCompat {
 
-	public static void registerCompat() {
+	public static void register() {
 		registerFlammables();
 		DataUtil.changeItemLocalization(Items.EGG, Incubation.MOD_ID, "chicken_egg");
 	}

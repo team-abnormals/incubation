@@ -53,9 +53,7 @@ public class Incubation {
 	}
 
 	private void commonSetup(FMLCommonSetupEvent event) {
-		event.enqueueWork(() -> {
-			IncubationCompat.registerCompat();
-		});
+		event.enqueueWork(IncubationCompat::register);
 	}
 
 	private void dataSetup(GatherDataEvent event) {

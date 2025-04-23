@@ -11,5 +11,9 @@
   "block.incubation.twig_turkey_nest": "Nido de pavo de ramas",
   "item.incubation.chicken_egg": "Huevo de gallina",
   "item.incubation.fried_egg": "Huevo frito",
-  "item.incubation.scrambled_eggs": "Huevos revueltos"
+  "item.incubation.scrambled_eggs": "Huevos revueltos",
+  "painting.incubation.culprit.author": "five",
+  "painting.incubation.culprit.title": "Culpable",
+  "painting.incubation.egg.author": "five",
+  "painting.incubation.egg.title": "Huevo"
 }

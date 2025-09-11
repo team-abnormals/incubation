@@ -1,0 +1,19 @@
+{
+  "block.incubation.chicken_egg_crate": "Caixote de Ovos de Galinha",
+  "block.incubation.hay_chicken_nest": "Ninho de Feno com Ovos de Galinha",
+  "block.incubation.hay_duck_nest": "Ninho de Feno com Ovos de Pato",
+  "block.incubation.hay_nest": "Ninho de Feno",
+  "block.incubation.hay_turkey_nest": "Ninho de Feno com Ovos de Peru",
+  "block.incubation.turtle_egg_crate": "Caixote de Ovos de Tartaruga",
+  "block.incubation.twig_chicken_nest": "Ninho de Galhos com Ovos de Galinha",
+  "block.incubation.twig_duck_nest": "Ninho de Galhos com Ovos de Pato",
+  "block.incubation.twig_nest": "Ninho de Galhos",
+  "block.incubation.twig_turkey_nest": "Ninho de Galhos com Ovos de Peru",
+  "item.incubation.chicken_egg": "Ovo de Galinha",
+  "item.incubation.fried_egg": "Ovo Frito",
+  "item.incubation.scrambled_eggs": "Ovos Mexidos",
+  "painting.incubation.culprit.author": "five",
+  "painting.incubation.culprit.title": "Culprit",
+  "painting.incubation.egg.author": "five",
+  "painting.incubation.egg.title": "Egg"
+}

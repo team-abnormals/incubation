@@ -10,6 +10,9 @@ public class IncubationBlockTags {
 	public static final TagKey<Block> TWIG_NESTS = blockTag("twig_nests");
 	public static final TagKey<Block> HAY_NESTS = blockTag("hay_nests");
 
+	public static final TagKey<Block> STORAGE_BLOCKS_EGG = TagUtil.blockTag("c", "storage_blocks/egg");
+	public static final TagKey<Block> STORAGE_BLOCKS_TURTLE_EGG = TagUtil.blockTag("c", "storage_blocks/turtle_egg");
+
 	private static TagKey<Block> blockTag(String name) {
 		return TagUtil.blockTag(Incubation.MOD_ID, name);
 	}

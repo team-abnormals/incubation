@@ -1,14 +1,12 @@
 package com.teamabnormals.incubation.common.block;
 
 import com.mojang.serialization.MapCodec;
-import com.teamabnormals.incubation.common.block.entity.BirdNestBlockEntity;
-import com.teamabnormals.incubation.core.registry.IncubationBlockEntityTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.*;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -21,12 +19,10 @@ import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.RenderShape;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityTicker;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -35,7 +31,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import javax.annotation.Nullable;
 import java.util.function.Supplier;
 
-public class BirdNestBlock extends BaseEntityBlock {
+public class BirdNestBlock extends Block implements WorldlyContainerHolder {
 	protected static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 3.0D, 16.0D);
 	public static final IntegerProperty EGGS = IntegerProperty.create("eggs", 1, 6);
 	private final Supplier<? extends Item> egg;
@@ -65,7 +61,7 @@ public class BirdNestBlock extends BaseEntityBlock {
 	}
 
 	@Override
-	public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+	public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
 		if (player.mayBuild()) {
 			if (this.egg.get() != Items.AIR && stack.is(this.egg.get())) {
 				int i = state.getValue(EGGS);
@@ -73,28 +69,32 @@ public class BirdNestBlock extends BaseEntityBlock {
 					if (!player.getAbilities().instabuild) {
 						stack.shrink(1);
 					}
-					worldIn.setBlock(pos, state.setValue(EGGS, i + 1), 3);
-					return ItemInteractionResult.sidedSuccess(worldIn.isClientSide);
+					level.setBlock(pos, state.setValue(EGGS, i + 1), 3);
+					return ItemInteractionResult.sidedSuccess(level.isClientSide);
 				} else {
 					return ItemInteractionResult.CONSUME;
 				}
 			} else {
-				popResource(worldIn, pos, new ItemStack(this.egg.get()));
-				this.removeEgg(worldIn, pos, state);
-				return ItemInteractionResult.sidedSuccess(worldIn.isClientSide);
+				popResource(level, pos, new ItemStack(this.egg.get()));
+				removeEgg(player, state, level, pos);
+				return ItemInteractionResult.sidedSuccess(level.isClientSide);
 			}
 		} else {
-			return super.useItemOn(stack, state, worldIn, pos, player, handIn, hit);
+			return super.useItemOn(stack, state, level, pos, player, handIn, hit);
 		}
 	}
 
-	private void removeEgg(Level world, BlockPos pos, BlockState state) {
+	public static BlockState removeEgg(@Nullable Entity entity, BlockState state, LevelAccessor level, BlockPos pos) {
 		int i = state.getValue(EGGS);
+		BlockState newState;
 		if (i > 1) {
-			world.setBlock(pos, state.setValue(EGGS, i - 1), 3);
+			newState = state.setValue(EGGS, i - 1);
 		} else {
-			world.setBlock(pos, this.getEmptyNest().defaultBlockState(), 3);
+			newState = ((BirdNestBlock) state.getBlock()).getEmptyNest().defaultBlockState();
 		}
+		level.setBlock(pos, newState, 3);
+		level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(entity, newState));
+		return newState;
 	}
 
 	@Override
@@ -103,26 +103,16 @@ public class BirdNestBlock extends BaseEntityBlock {
 	}
 
 	@Override
-	public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
-		return worldIn.getBlockState(pos.below()).isSolid();
+	public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+		return level.getBlockState(pos.below()).isSolid();
 	}
 
 	@Override
-	public BlockState playerWillDestroy(Level worldIn, BlockPos pos, BlockState state, Player player) {
-		if (!worldIn.isClientSide() && !player.isCreative() && this.getEgg() != null && state.getValue(EGGS) > 0)
-			popResource(worldIn, pos, new ItemStack(this.getEgg(), state.getValue(EGGS)));
-		return super.playerWillDestroy(worldIn, pos, state, player);
-	}
-
-	@Override
-	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-		return IncubationBlockEntityTypes.BIRD_NEST.get().create(pos, state);
-	}
-
-	@Nullable
-	@Override
-	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
-		return level.isClientSide ? null : createTickerHelper(type, IncubationBlockEntityTypes.BIRD_NEST.get(), BirdNestBlockEntity::serverTick);
+	public BlockState playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
+		if (!level.isClientSide() && !player.isCreative() && this.getEgg() != null && state.getValue(EGGS) > 0) {
+			popResource(level, pos, new ItemStack(this.getEgg(), state.getValue(EGGS)));
+		}
+		return super.playerWillDestroy(level, pos, state, player);
 	}
 
 	@Override
@@ -156,5 +146,52 @@ public class BirdNestBlock extends BaseEntityBlock {
 	@Override
 	public int getAnalogOutputSignal(BlockState blockState, Level worldIn, BlockPos pos) {
 		return blockState.getValue(EGGS);
+	}
+
+	@Override
+	public WorldlyContainer getContainer(BlockState state, LevelAccessor level, BlockPos pos) {
+		return new BirdNestBlock.OutputContainer(state, level, pos, new ItemStack(this.getEgg()));
+	}
+
+	public static class OutputContainer extends SimpleContainer implements WorldlyContainer {
+		private final BlockState state;
+		private final LevelAccessor level;
+		private final BlockPos pos;
+		private final ItemStack eggStack;
+		private boolean changed;
+
+		public OutputContainer(BlockState state, LevelAccessor level, BlockPos pos, ItemStack stack) {
+			super(stack);
+			this.state = state;
+			this.level = level;
+			this.pos = pos;
+			this.eggStack = stack;
+		}
+
+		@Override
+		public int getMaxStackSize() {
+			return 1;
+		}
+
+		@Override
+		public int[] getSlotsForFace(Direction side) {
+			return side == Direction.DOWN ? new int[]{0} : new int[0];
+		}
+
+		@Override
+		public boolean canPlaceItemThroughFace(int index, ItemStack itemStack, @Nullable Direction direction) {
+			return false;
+		}
+
+		@Override
+		public boolean canTakeItemThroughFace(int index, ItemStack stack, Direction direction) {
+			return !this.changed && direction == Direction.DOWN && stack.is(this.eggStack.getItem());
+		}
+
+		@Override
+		public void setChanged() {
+			BirdNestBlock.removeEgg(null, this.state, this.level, this.pos);
+			this.changed = true;
+		}
 	}
 }

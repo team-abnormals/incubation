@@ -7,9 +7,7 @@
       "element": {
         "element_type": "minecraft:legacy_single_pool_element",
         "location": "incubation:village/desert_chicken_coop_1",
-        "processors": {
-          "processors": []
-        },
+        "processors": "minecraft:zombie_desert",
         "projection": "rigid"
       },
       "weight": 2

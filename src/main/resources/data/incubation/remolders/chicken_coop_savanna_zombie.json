@@ -7,9 +7,7 @@
       "element": {
         "element_type": "minecraft:legacy_single_pool_element",
         "location": "incubation:village/savanna_chicken_coop_1",
-        "processors": {
-          "processors": []
-        },
+        "processors": "minecraft:zombie_savanna",
         "projection": "rigid"
       },
       "weight": 2

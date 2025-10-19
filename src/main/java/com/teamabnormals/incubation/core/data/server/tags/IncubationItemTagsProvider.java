@@ -21,8 +21,8 @@ public class IncubationItemTagsProvider extends ItemTagsProvider {
 
 	@Override
 	protected void addTags(Provider provider) {
-		this.tag(Tags.Items.FOODS).add(IncubationItems.FRIED_EGG.get(), IncubationItems.SCRAMBLED_EGGS.get());
-		this.tag(IncubationItemTags.COOKED_EGGS).add(IncubationItems.FRIED_EGG.get());
+		this.tag(Tags.Items.FOODS).addTag(IncubationItemTags.FOODS_COOKED_EGG).add(IncubationItems.SCRAMBLED_EGGS.get());
+		this.tag(IncubationItemTags.FOODS_COOKED_EGG).add(IncubationItems.FRIED_EGG.get());
 
 		this.copy(Tags.Blocks.STORAGE_BLOCKS, Tags.Items.STORAGE_BLOCKS);
 		this.copy(IncubationBlockTags.STORAGE_BLOCKS_EGG, IncubationItemTags.STORAGE_BLOCKS_EGG);

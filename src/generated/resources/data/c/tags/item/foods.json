@@ -1,6 +1,6 @@
 {
   "values": [
-    "incubation:fried_egg",
+    "#c:foods/cooked_egg",
     "incubation:scrambled_eggs"
   ]
 }

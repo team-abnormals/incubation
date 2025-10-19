@@ -31,7 +31,7 @@ public class IncubationRecipeProvider extends RecipeProvider {
 		nineBlockStorageRecipes(output, RecipeCategory.BUILDING_BLOCKS, Items.EGG, IncubationBlocks.CHICKEN_EGG_CRATE.get());
 		nineBlockStorageRecipes(output, RecipeCategory.BUILDING_BLOCKS, Items.TURTLE_EGG, IncubationBlocks.TURTLE_EGG_CRATE.get());
 		cookingRecipes(output, RecipeCategory.FOOD, Tags.Items.EGGS, IncubationItems.FRIED_EGG.get());
-		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, IncubationItems.SCRAMBLED_EGGS.get()).requires(Tags.Items.EGGS).requires(Tags.Items.EGGS).requires(BlueprintItemTags.MILK).requires(Items.BOWL).unlockedBy(getHasName(Items.BOWL), has(Items.BOWL)).unlockedBy(getHasName(Tags.Items.EGGS), has(Tags.Items.EGGS)).save(output);
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, IncubationItems.SCRAMBLED_EGGS.get()).requires(Tags.Items.EGGS).requires(Tags.Items.EGGS).requires(Tags.Items.DRINKS_MILK).requires(Items.BOWL).unlockedBy(getHasName(Items.BOWL), has(Items.BOWL)).unlockedBy(getHasName(Tags.Items.EGGS), has(Tags.Items.EGGS)).save(output);
 		ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, IncubationBlocks.HAY_NEST.get()).define('#', Items.WHEAT).pattern("# #").pattern("###").unlockedBy(getHasName(Items.WHEAT), has(Items.WHEAT)).save(output);
 	}
 

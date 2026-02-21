@@ -11,5 +11,9 @@
   "block.incubation.twig_turkey_nest": "Kalkkunan munia risupesässä",
   "item.incubation.chicken_egg": "Kananmuna",
   "item.incubation.fried_egg": "Paistettu muna",
-  "item.incubation.scrambled_eggs": "Munakokkeli"
+  "item.incubation.scrambled_eggs": "Munakokkeli",
+  "painting.incubation.culprit.author": "five",
+  "painting.incubation.culprit.title": "Syyllinen",
+  "painting.incubation.egg.author": "five",
+  "painting.incubation.egg.title": "Muna"
 }

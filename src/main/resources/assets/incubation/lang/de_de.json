@@ -1,0 +1,19 @@
+{
+  "block.incubation.chicken_egg_crate": "Hühner-Eierkiste",
+  "block.incubation.hay_chicken_nest": "Hühner-Strohnest",
+  "block.incubation.hay_duck_nest": "Enten-Strohnest",
+  "block.incubation.hay_nest": "Strohnest",
+  "block.incubation.hay_turkey_nest": "Truthahn-Strohnest",
+  "block.incubation.turtle_egg_crate": "Schildkröten-Eierkiste",
+  "block.incubation.twig_chicken_nest": "Hühner-Reisignest",
+  "block.incubation.twig_duck_nest": "Enten-Reisignest",
+  "block.incubation.twig_nest": "Zweigenest",
+  "block.incubation.twig_turkey_nest": "Truthahn-Reisignest",
+  "item.incubation.chicken_egg": "Hühnerei",
+  "item.incubation.fried_egg": "Spiegelei",
+  "item.incubation.scrambled_eggs": "Rührei",
+  "painting.incubation.culprit.author": "five",
+  "painting.incubation.culprit.title": "Täter",
+  "painting.incubation.egg.author": "five",
+  "painting.incubation.egg.title": "Ei"
+}

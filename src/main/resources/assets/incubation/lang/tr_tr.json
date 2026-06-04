@@ -1,0 +1,19 @@
+{
+  "block.incubation.chicken_egg_crate": "Tavuk Yumurtası Kasası",
+  "block.incubation.hay_chicken_nest": "Saman Tavuk Yuvası",
+  "block.incubation.hay_duck_nest": "Saman Ördek Yuvası",
+  "block.incubation.hay_nest": "Saman Yuva",
+  "block.incubation.hay_turkey_nest": "Saman Hindi Yuvası",
+  "block.incubation.turtle_egg_crate": "Kaplumbağa Yumurtası Kasası",
+  "block.incubation.twig_chicken_nest": "Çırpı Tavuk Yuvası",
+  "block.incubation.twig_duck_nest": "Çırpı Ördek Yuvası",
+  "block.incubation.twig_nest": "Çırpı Yuva",
+  "block.incubation.twig_turkey_nest": "Çırpı Hindi Yuvası",
+  "item.incubation.chicken_egg": "Tavuk Yumurtası",
+  "item.incubation.fried_egg": "Sahanda Yumurta",
+  "item.incubation.scrambled_eggs": "Çırpılmış Yumurta",
+  "painting.incubation.culprit.author": "five",
+  "painting.incubation.culprit.title": "Suçlu",
+  "painting.incubation.egg.author": "five",
+  "painting.incubation.egg.title": "Yumurta"
+}

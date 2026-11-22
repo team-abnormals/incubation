@@ -1,0 +1,15 @@
+{
+  "target_pool": "repurposed_structures:villages/cherry/houses",
+  "fallback": "repurposed_structures:villages/cherry/terminators",
+  "elements": [
+    {
+      "weight": 6,
+      "element": {
+        "location": "incubation:repurposed_structures/villages/cherry/chicken_coop_1",
+        "processors": "repurposed_structures:villages/cherry/mossify",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}

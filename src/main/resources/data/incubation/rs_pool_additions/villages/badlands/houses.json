@@ -1,0 +1,15 @@
+{
+  "target_pool": "repurposed_structures:villages/badlands/houses",
+  "fallback": "repurposed_structures:villages/badlands/terminators",
+  "elements": [
+    {
+      "weight": 6,
+      "element": {
+        "location": "incubation:repurposed_structures/villages/badlands/chicken_coop_1",
+        "processors": "minecraft:empty",
+        "projection": "rigid",
+        "element_type": "minecraft:legacy_single_pool_element"
+      }
+    }
+  ]
+}
